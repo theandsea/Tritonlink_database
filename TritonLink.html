@@ -104,18 +104,12 @@
                     <label for="enrolled">Enrolled:</label>
                 </th>
                 <th>
-                    <!-- Enrolled in the school -->
-                    <label for="degree">Degree:</label>
-                </th>
-                <th>
                     <label for="major"> Major:</label>
                 </th>
                 <th>
                     <label for="minor"> Minor:</label>
                 </th>
-                <th>
-                    <label for="college"> UCSD College:</label>
-                </th>
+                
             </tr>
             <tr>
                 <th>
@@ -143,22 +137,30 @@
                     <input type="checkbox" id="enrolled" name="enrolled"><br>
                 </th>
                 <th>
-                    <!-- degree -->
-                    <select name="degree" id="degree">
-                        <option value="0">--Select Degree--</option>
-                        <option value="1">BS</option>
-                        <option value="2">MS</option>
-                        <option value="3"> MS/BS</option>
-                        <option value="4">PhD</option>
-                    </select><br>
-                </th>
-                <th>
                     <!-- major -->
                     <input type="text" id="major" name="major">
                 </th>
                 <th>
                     <!-- Minor -->
                     <input type="text" id="minor" name="minor">
+                </th>
+                <th>
+                    <input type="submit" value="Insert">
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <!-- student ID -->
+                    <label for="student-id">Student ID:</label>
+                </th>
+                <th>
+                    <label for="college"> UCSD College:</label>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <!-- student ID -->
+                    <input type="text" id="student-id" name="student-id"><br>
                 </th>
                 <th>
                     <!-- college -->
@@ -176,7 +178,70 @@
                 <th>
                     <input type="submit" value="Insert">
                 </th>
+                </tr>
             </tr>
+            <tr>
+                <th>
+                    <!-- student ID -->
+                    <label for="student-id">Student ID:</label>
+                </th>
+                <th>
+                    <label for="Degree"> Degree:</label>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <!-- student ID -->
+                    <input type="text" id="student-id" name="student-id"><br>
+                </th>
+                <th>
+                    <!-- degree -->
+                    <select name="degree" id="degree">
+                        <option value="0">--Select Degree--</option>
+                        <option value="1">MS</option>
+                        <option value="2"> MS/BS</option>
+                        <option value="3">PhD</option>
+                    </select><br>
+                </th>
+                <th>
+                    <input type="submit" value="Insert">
+                </th>
+                </tr>
+                <tr>
+                    <th>
+                        <!-- student ID -->
+                        <label for="student-id">Student ID:</label>
+                    </th>
+                    <th>
+                        <label for="school-name"> Past school name:</label>
+                    </th>
+                    <th>
+                        <label for="Degree"> Degree:</label>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <!-- student ID -->
+                        <input type="text" id="student-id" name="student-id"><br>
+                    </th>
+                    <th>
+                        <!-- student ID -->
+                        <input type="text" id="school-name" name="school-name"><br>
+                    </th>
+                    <th>
+                        <!-- degree -->
+                        <select name="degree" id="degree">
+                            <option value="0">--Select Degree--</option>
+                            <option value="1">BS</option>
+                            <option value="2"> MS</option>
+                            <option value="3">PhD</option>
+                        </select><br>
+                    </th>
+                    <th>
+                        <input type="submit" value="Insert">
+                    </th>
+                    </tr>
+            </table>
         </table>
     </div>
 
@@ -198,22 +263,22 @@
                 </th>
             </tr>
             <tr>
+                <th>
+                    <!-- Fac-Name -->
+                    <input type="text" id="faculty-name" name="faculty-name"><br>
+                </th>
+                <th>
+                    <!-- Fac-Department -->
+                    <input type="text" id="faculty-department" name="faculty-department"><br>
+                </th>
+                <th>
+                    <!-- Fac-Title -->
+                    <input type="text" id="faculty-title" name="faculty-title"><br>
+                </th>
+                <th>
+                    <input type="submit" value="Insert">
+                </th>
             </tr>
-            <th>
-                <!-- Fac-Name -->
-                <input type="text" id="faculty-name" name="faculty-name"><br>
-            </th>
-            <th>
-                <!-- Fac-Department -->
-                <input type="text" id="faculty-department" name="faculty-department"><br>
-            </th>
-            <th>
-                <!-- Fac-Title -->
-                <input type="text" id="faculty-title" name="faculty-title"><br>
-            </th>
-            <th>
-                <input type="submit" value="Insert">
-            </th>
         </table>
     </div>
 
@@ -238,12 +303,6 @@
                 </th>
                 <th>
                     <label for="lab">lab Required:</label>
-                </th>
-                <th>
-                    <label for="consent">Professor Name:</label>
-                </th>
-                <th>
-                    <label for="pre-req">Pre-requirement Course number</label>
                 </th>
             </tr>
             <tr>
@@ -278,12 +337,92 @@
                     <input type="checkbox" id="lab" name="lab"><br>
                 </th>
                 <th>
+                    <input type="submit" value="Insert">
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <!-- course number -->
+                    <label for="course-number">Course number:</label>
+                </th>
+                <th>
+                    <label for="consent">Professor Name:</label>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <!-- course number -->
+                    <input type="text" id="course-number" name="course-number"><br>
+                </th>
+                <th>
                     <!-- course consent -->
                     <input type="text" id="consent" name="consent"><br>
                 </th>
                 <th>
+                    <input type="submit" value="Insert">
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <!-- course number -->
+                    <label for="course-number">Course number:</label>
+                </th>
+                <th>
+                    <label for="pre-req">Pre-requirement Course number</label>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <!-- course number -->
+                    <input type="text" id="course-number" name="course-number"><br>
+                </th>
+                <th>
                     <!-- course pre req -->
                     <input type="text" id="pre-req" name="pre-req">
+                </th>
+                <th>
+                    <input type="submit" value="Insert">
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <!-- course number -->
+                    <label for="course-number">Course number:</label>
+                </th>
+                <th>
+                    <label for="category">Category Name:</label>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <!-- course number -->
+                    <input type="text" id="course-number" name="course-number"><br>
+                </th>
+                <th>
+                    <!-- course pre req -->
+                    <input type="text" id="category" name="category">
+                </th>
+                <th>
+                    <input type="submit" value="Insert">
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <!-- course number -->
+                    <label for="course-number">Course number:</label>
+                </th>
+                <th>
+                    <label for="concentration">Concentration Name:</label>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <!-- course number -->
+                    <input type="text" id="course-number" name="course-number"><br>
+                </th>
+                <th>
+                    <!-- course pre req -->
+                    <input type="text" id="concentration" name="concentration">
                 </th>
                 <th>
                     <input type="submit" value="Insert">
@@ -346,7 +485,6 @@
                 <th>
                     <!-- section year -->
                     <input type="number" id="section-year" name="section-year"><br>
-
                 </th>
                 <th>
                     <!-- enrollment limit -->
@@ -359,13 +497,70 @@
                 <th>
                     <input type="submit" value="Submit">
                 </th>
+            </tr>
+            <tr>
                 <th>
-
+                    <label for="section-id">Section id:</label>
                 </th>
                 <th>
-
+                    <label for="section-year">Year:</label>
                 </th>
-
+                <th>
+                    <label for="section-type">Section type:</label>
+                </th>
+                <th>
+                    <label for="day">Day:</label>
+                </th>
+                <th>
+                    <label for="start_time">Start time:</label>
+                </th>
+                <th>
+                    <label for="end_time">End time:</label>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <!-- section id -->
+                    <input type="text" id="section-id" name="section-id"><br>
+                </th>
+                <th>
+                    <!-- section year -->
+                    <input type="number" id="section-year" name="section-year"><br>
+                </th>
+                <th>
+                    <!-- Section quarter -->
+                    <select name="section-type" id="section-type">
+                        <option value="0">--Select type --</option>
+                        <option value="1">LE</option>
+                        <option value="2">DI</option>
+                        <option value="3">LA</option>
+                        <option value="4">SE</option>
+                    </select><br>
+                </th>
+                <th>
+                    <!-- Section quarter -->
+                    <select name="day" id="day">
+                        <option value="0">--Select Day --</option>
+                        <option value="1">M</option>
+                        <option value="2">Tu</option>
+                        <option value="3">W</option>
+                        <option value="4">Th</option>
+                        <option value="4">F</option>
+                        <option value="4">Sa</option>
+                        <option value="4">Su</option>
+                    </select><br>
+                </th>
+                <th>
+                    <!-- start  -->
+                    <input type="time" id="start_t" name="start_t"><br>
+                </th>
+                <th>
+                    <!-- end  -->
+                    <input type="time" id="end_time" name="end_time"><br>
+                </th>
+                <th>
+                    <input type="submit" value="Submit">
+                </th>
             </tr>
         </table>
     </div>
