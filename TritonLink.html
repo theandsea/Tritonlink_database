@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Menu Example</title>
-	<style>
-		/* Style the menu */
-		.menu {
-			float: left;
-			width: 20%;
-			background-color: #f1f1f1;
-			padding: 10px;
-		}
+    <title>Menu Example</title>
+    <style>
+        /* Style the menu */
+        .menu {
+            float: left;
+            width: fit-content;
+            background-color: #f1f1f1;
+            padding: 10px;
+        }
 
-		/* Style the links inside the menu */
-		.menu a {
-			display: block;
-			color: black;
-			padding: 10px;
-			text-decoration: none;
-		}
+        /* Style the links inside the menu */
+        .menu a {
+            display: block;
+            color: black;
+            padding: 10px;
+            text-decoration: none;
+        }
 
-		/* Add a hover effect to the menu links */
-		.menu a:hover {
-			background-color: #ddd;
-		}
+        /* Add a hover effect to the menu links */
+        .menu a:hover {
+            background-color: #ddd;
+        }
 
-		/* Style the main content area */
+        /* Style the main content area */
         .content {
-			flex-basis: 80%;
-			background-color: #fff;
-			padding: 20px;
-			box-sizing: border-box;
-		}
-	</style>
+            flex-basis: 80%;
+            background-color: #fff;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
+
 <body>
-<h1>Entry Menu</h1>
+    <h1>Entry Menu</h1>
     <div class="container">
-		<div class="menu">
+        <div class="menu">
             <a href="#" onclick="showContent('Student')">Student</a>
             <a href="#" onclick="showContent('Faculty')">Faculty</a>
             <a href="#" onclick="showContent('Course')">Course</a>
@@ -50,31 +52,31 @@
             <a href="#" onclick="showContent('Degree Requirements')">Degree Requirements</a>
             <!--<a href="#" onclick="showContent('content4')">Menu Item 4</a> // for add more-->
         </div>
-		<!-- Create the main content area -->
-	    <div class="content" id="mainContent">
-		    <p>Click on a menu item to see the content.</p>
-	    </div>
-	</div>
-	<!-- Create the menu -->
+        <!-- Create the main content area -->
+        <div class="content" id="mainContent">
+            <p>Click on a menu item to see the content.</p>
+        </div>
+    </div>
+    <!-- Create the menu -->
 
-	<!-- Add the JavaScript to update the content -->
-	<script>
-		function showContent(contentId) {
-			// Get the content element
-			var content = document.getElementById(contentId);
+    <!-- Add the JavaScript to update the content -->
+    <script>
+        function showContent(contentId) {
+            // Get the content element
+            var content = document.getElementById(contentId);
 
-			// Get the main content area
-			var mainContent = document.getElementById('mainContent');
+            // Get the main content area
+            var mainContent = document.getElementById('mainContent');
 
-			// Replace the main content with the selected content
-			mainContent.innerHTML = content.innerHTML;
-		}
-	</script>
+            // Replace the main content with the selected content
+            mainContent.innerHTML = content.innerHTML;
+        }
+    </script>
 
-	<!-- Define the different content areas -->
+    <!-- Define the different content areas -->
 
-	<div id="Student" style="display:none;">
-		<h1>Student Entry Form</h1>
+    <div id="Student" style="display:none;">
+        <h1>Student Entry Form</h1>
         <table id="student">
             <tr>
                 <th>
@@ -100,6 +102,19 @@
                 <th>
                     <!-- Enrolled in the school -->
                     <label for="enrolled">Enrolled:</label>
+                </th>
+                <th>
+                    <!-- Enrolled in the school -->
+                    <label for="degree">Degree:</label>
+                </th>
+                <th>
+                    <label for="major"> Major:</label>
+                </th>
+                <th>
+                    <label for="minor"> Minor:</label>
+                </th>
+                <th>
+                    <label for="college"> UCSD College:</label>
                 </th>
             </tr>
             <tr>
@@ -128,257 +143,512 @@
                     <input type="checkbox" id="enrolled" name="enrolled"><br>
                 </th>
                 <th>
+                    <!-- degree -->
+                    <select name="degree" id="degree">
+                        <option value="0">--Select Degree--</option>
+                        <option value="1">BS</option>
+                        <option value="2">MS</option>
+                        <option value="3"> MS/BS</option>
+                        <option value="4">PhD</option>
+                    </select><br>
+                </th>
+                <th>
+                    <!-- major -->
+                    <input type="text" id="major" name="major">
+                </th>
+                <th>
+                    <!-- Minor -->
+                    <input type="text" id="minor" name="minor">
+                </th>
+                <th>
+                    <!-- college -->
+                    <select name="college" id="college">
+                        <option value="0">--Select UCSD college--</option>
+                        <option value="1">Revelle</option>
+                        <option value="2">John Muir</option>
+                        <option value="3"> Thurgood Marshall</option>
+                        <option value="4">Earl Warren</option>
+                        <option value="5"> Eleanor Roosevelt</option>
+                        <option value="6">Sixth</option>
+                        <option value="7"> Seventh</option>
+                    </select><br>
+                </th>
+                <th>
                     <input type="submit" value="Insert">
                 </th>
             </tr>
         </table>
-	</div>
+    </div>
 
-	<div id="Faculty" style="display:none;">
-		<h1>Faculty Entry Form</h1>
-        <form>
-            <!-- Fac-Name -->
-            <label for="faculty-name">Name:</label>
-            <input type="text" id="faculty-name" name="faculty-name"><br>
-            <!-- Fac-Department -->
-            <label for="faculty-department">Department:</label>
-            <input type="text" id="faculty-department" name="faculty-department"><br>
-            <!-- Fac-Title -->
-            <label for="faculty-title">Title:</label>
-            <input type="text" id="faculty-title" name="faculty-title"><br>
-        
-            <input type="submit" value="Submit">
+    <div id="Faculty" style="display:none;">
+        <h1>Faculty Entry Form</h1>
+        <table>
+            <tr>
+                <th>
+                    <!-- Fac-Name -->
+                    <label for="faculty-name">Name:</label>
+                </th>
+                <th>
+                    <!-- Fac-Department -->
+                    <label for="faculty-department">Department:</label>
+                </th>
+                <th>
+                    <!-- Fac-Title -->
+                    <label for="faculty-title">Title:</label>
+                </th>
+            </tr>
+            <tr>
+            </tr>
+            <th>
+                <!-- Fac-Name -->
+                <input type="text" id="faculty-name" name="faculty-name"><br>
+            </th>
+            <th>
+                <!-- Fac-Department -->
+                <input type="text" id="faculty-department" name="faculty-department"><br>
+            </th>
+            <th>
+                <!-- Fac-Title -->
+                <input type="text" id="faculty-title" name="faculty-title"><br>
+            </th>
+            <th>
+                <input type="submit" value="Insert">
+            </th>
+        </table>
     </div>
 
     <div id="Course" style="display:none;">
         <h1>Course Entry Form</h1>
-        <form>
-            <!-- course number -->
-            <label for="course-number">Course number:</label>
-            <input type="text" id="course-number" name="course-number"><br>
-            <!-- course department -->
-            <label for="course-department">Course Department:</label>
-            <input type="text" id="course-department" name="course-department"><br>
-            <!-- Units -->
-            <label for="course-min-units">Min Units:</label>
-            <input type="text" id="course-min-units" name="course-min-units"><br>
+        <table>
+            <tr>
+                <th>
+                    <label for="course-number">Course number:</label>
+                </th>
+                <th>
+                    <label for="course-department">Course Department:</label>
+                </th>
+                <th>
+                    <label for="course-min-units">Min Units:</label>
+                </th>
+                <th>
+                    <label for="course-max-units">Max Units:</label>
+                </th>
+                <th>
+                    <label for="grade-options">Select grade options:</label>
+                </th>
+                <th>
+                    <label for="lab">lab Required:</label>
+                </th>
+                <th>
+                    <label for="consent">Professor Name:</label>
+                </th>
+                <th>
+                    <label for="pre-req">Pre-requirement Course number</label>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <!-- course number -->
+                    <input type="text" id="course-number" name="course-number"><br>
+                </th>
+                <th>
+                    <!-- course department -->
+                    <input type="text" id="course-department" name="course-department"><br>
+                </th>
+                <th>
+                    <!-- Units -->
+                    <input type="text" id="course-min-units" name="course-min-units"><br>
 
-            <label for="course-max-units">Max Units:</label>
-            <input type="text" id="course-max-units" name="course-max-units"><br>
-            <!-- Grade option -->
-            <label for="grade-options">Select grade options:</label>
-                <select name="grade-options" id="grade-options">
-                    <option value="0">--Select grade options--</option>
-                    <option value="1">Letter</option>
-                    <option value="2">S/U</option>
-                    <option value="3">Letter or S/U</option>
-                </select><br>
-            <!-- lab  -->
-            <label for="lab">lab Required:</label>
-            <input type="checkbox" id="lab" name="lab"><br>
-            <!-- course consent -->
-            <label for="consent">Professor Name:</label>
-            <input type="text" id="consent" name="consent"><br>
-            <!-- course pre req -->
-            <label for="pre-req">Pre-requirement Course number</label>
-            <input type="text" id="pre-req" name="pre-req"><br>
 
-            <input type="submit" value="Submit">
-        </form>
-	</div>
-	<div id="Class" style="display:none;">
-		<h1>Class Entry Form</h1>
-        <form>
-            <!-- course number -->
-            <label for="course-number">Course number:</label>
-            <input type="text" id="course-number" name="course-number"><br>
-            <!-- title -->
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title"><br>
+                </th>
+                <th>
+                    <input type="text" id="course-max-units" name="course-max-units"><br>
+                </th>
+                <th>
+                    <!-- Grade option -->
+                    <select name="grade-options" id="grade-options">
+                        <option value="0">--Select grade options--</option>
+                        <option value="1">Letter</option>
+                        <option value="2">S/U</option>
+                        <option value="3">Letter or S/U</option>
+                    </select>
+                </th>
+                <th>
+                    <!-- lab  -->
+                    <input type="checkbox" id="lab" name="lab"><br>
+                </th>
+                <th>
+                    <!-- course consent -->
+                    <input type="text" id="consent" name="consent"><br>
+                </th>
+                <th>
+                    <!-- course pre req -->
+                    <input type="text" id="pre-req" name="pre-req">
+                </th>
+                <th>
+                    <input type="submit" value="Insert">
+                </th>
+            </tr>
+        </table>
+    </div>
 
-            <!-- section id -->
-            <label for="section-id">Section id:</label>
-            <input type="text" id="section-id" name="section-id"><br>
+    <div id="Class" style="display:none;">
+        <h1>Class Entry Form</h1>
+        <table>
+            <tr>
+                <th>
+                    <label for="course-number">Course number:</label>
+                </th>
+                <th>
+                    <label for="title">Title:</label>
+                </th>
+                <th>
+                    <label for="section-id">Section id:</label>
+                </th>
+                <th>
+                    <label for="Section-qaurter">Select Quarter:</label>
+                </th>
+                <th>
+                    <label for="section-year">Year:</label>
+                </th>
+                <th>
+                    <label for="section-limit">Enrollement Limit:</label>
+                </th>
+                <th>
+                    <label for="discussion">Discussion Mandatory?</label>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <!-- course number -->
+                    <input type="text" id="course-number" name="course-number"><br>
 
-            <!-- Section quarter -->
-            <label for="Section-qaurter">Select Quarter:</label>
-            <select name="Section-qaurter" id="Section-qaurter">
-                <option value="0">--Select grade options--</option>
-                <option value="1">Fall</option>
-                <option value="2">Winter</option>
-                <option value="3">Spring</option>
-                <option value="4">Summer I</option>
-                <option value="5">Summer II</option>
-            </select><br>
+                </th>
+                <th>
+                    <!-- title -->
+                    <input type="text" id="title" name="title"><br>
+                </th>
+                <th>
+                    <!-- section id -->
+                    <input type="text" id="section-id" name="section-id"><br>
+                </th>
+                <th>
+                    <!-- Section quarter -->
+                    <select name="Section-qaurter" id="Section-qaurter">
+                        <option value="0">--Select grade options--</option>
+                        <option value="1">Fall</option>
+                        <option value="2">Winter</option>
+                        <option value="3">Spring</option>
+                        <option value="4">Summer I</option>
+                        <option value="5">Summer II</option>
+                    </select><br>
+                </th>
+                <th>
+                    <!-- section year -->
+                    <input type="number" id="section-year" name="section-year"><br>
 
-            <!-- section year -->
-            <label for="section-year">Year:</label>
-            <input type="number" id="section-year" name="section-year"><br>
-            <!-- enrollment limit -->
-            <label for="section-limit">Enrollement Limit:</label>
-            <input type="number" id="section-limit" name="section-limit"><br>
+                </th>
+                <th>
+                    <!-- enrollment limit -->
+                    <input type="number" id="section-limit" name="section-limit"><br>
+                </th>
+                <th>
+                    <!-- discussion -->
+                    <input type="checkbox" id="discussion" name="discussion"><br>
+                </th>
+                <th>
+                    <input type="submit" value="Submit">
+                </th>
+                <th>
 
-            <!-- discussion -->
-            <label for="discussion">Discussion Mandatory?</label>
-            <input type="checkbox" id="discussion" name="discussion"><br>
+                </th>
+                <th>
 
-            <input type="submit" value="Submit">
+                </th>
+
+            </tr>
+        </table>
     </div>
 
     <div id="Enrollement" style="display:none;">
         <h1>Course Enrollement Current Quarter</h1>
-        <form>
-            <!-- student ID -->
-            <label for="student-id">Student ID:</label>
-            <input type="text" id="student-id" name="student-id"><br>
-
-            <!-- course number -->
-            <label for="course-number">Course number:</label>
-            <input type="text" id="course-number" name="course-number"><br>
-
-            <!-- section id -->
-            <label for="section-id">Section id:</label>
-            <input type="text" id="section-id" name="section-id"><br>
-
-            <!-- Units -->
-            <label for="course-units"> Units:</label>
-            <input type="text" id="course-units" name="course-units"><br>
-
-            <input type="submit" value="Submit">
-        </form>
+        <table>
+            <tr>
+                <th>
+                    <label for="student-id">Student ID:</label>
+                </th>
+                <th>
+                    <label for="course-number">Course number:</label>
+                </th>
+                <th>
+                    <label for="section-id">Section id:</label>
+                </th>
+                <th>
+                    <label for="course-units"> Units:</label>
+            </tr>
+            <tr>
+                <th>
+                    <!-- student ID -->
+                    <input type="text" id="student-id" name="student-id"><br>
+                </th>
+                <th>
+                    <!-- course number -->
+                    <input type="text" id="course-number" name="course-number"><br>
+                </th>
+                <th>
+                    <!-- section id -->
+                    <input type="text" id="section-id" name="section-id"><br>
+                </th>
+                <th>
+                    <!-- Units -->
+                    <input type="text" id="course-units" name="course-units"><br>
+                </th>
+                <th>
+                    <input type="submit" value="Submit">
+                </th>
+            </tr>
+        </table>
     </div>
-    
+
     <div id="Classes Taken" style="display:none;">
         <h1>Classes Taken in the Past</h1>
-        <form>
-            <!-- student ID -->
-            <label for="student-id">Student ID:</label>
-            <input type="text" id="student-id" name="student-id"><br>
+        <table>
+            <tr>
+                <th>
+                    <label for="student-id">Student ID:</label>
+                </th>
+                <th>
+                    <label for="course-number">Course number:</label>
+                </th>
+                <th>
+                    <label for="section-id">Section id:</label>
+                </th>
+                <th>
+                    <label for="course-units"> Units:</label>
+                </th>
+                <th>
+                    <label for="course-grade"> Grade Recieved:</label>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <!-- student ID -->
+                    <input type="text" id="student-id" name="student-id"><br>
+                </th>
+                <th>
+                    <!-- course number -->
+                    <input type="text" id="course-number" name="course-number"><br>
+                </th>
+                <th>
+                    <!-- section id -->
+                    <input type="text" id="section-id" name="section-id"><br>
+                </th>
+                <th>
+                    <!-- Units -->
+                    <input type="text" id="course-units" name="course-units"><br>
+                </th>
+                <th>
+                    <!-- Grade -->
+                    <input type="text" id="course-grade" name="course-grade"><br>
+                </th>
+                <th>
+                    <input type="submit" value="Submit">
+                </th>
+            </tr>
 
-            <!-- course number -->
-            <label for="course-number">Course number:</label>
-            <input type="text" id="course-number" name="course-number"><br>
-
-            <!-- section id -->
-            <label for="section-id">Section id:</label>
-            <input type="text" id="section-id" name="section-id"><br>
-
-            <!-- Units -->
-            <label for="course-units"> Units:</label>
-            <input type="text" id="course-units" name="course-units"><br>
-
-            <!-- Grade -->
-            <label for="course-grade"> Grade Recieved:</label>
-            <input type="text" id="course-grade" name="course-grade"><br>
-
-            <input type="submit" value="Submit">
-        </form>
+        </table>
     </div>
 
     <div id="Thesis" style="display:none;">
         <h1>Thesis Committee Submission</h1>
-        <form>
-            <!-- student ID -->
-            <label for="student-id">Student ID:</label>
-            <input type="text" id="student-id" name="student-id"><br>
+        <table>
+            <tr>
+                <th>
+                    <label for="student-id">Student ID:</label>
+                </th>
+                <th>
+                    <label for="faculty-name">Faculty Name:</label>
+                </th>
+                <th>
+                    <label for="thesis">Thesis name:</label>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <!-- student ID -->
+                    <input type="text" id="student-id" name="student-id"><br>
+                </th>
+                <th>
+                    <!-- Fac-Name -->
+                    <input type="text" id="faculty-name" name="faculty-name"><br>
+                </th>
+                <th>
+                    <!-- Thesis name -->
+                    <input type="text" id="thesis" name="thesis"><br>
+                </th>
+                <th>
+                    <input type="submit" value="Submit">
 
-            <!-- Fac-Name -->
-            <label for="faculty-name">Faculty Name:</label>
-            <input type="text" id="faculty-name" name="faculty-name"><br>
+                </th>
 
-            <!-- Thesis name -->
-            <label for="thesis">Thesis name:</label>
-            <input type="text" id="thesis" name="thesis"><br>
-
-            <input type="submit" value="Submit">
-        </form>
+            </tr>
+        </table>
     </div>
 
     <div id="Probation" style="display:none;">
         <h1>Probation Info Submission</h1>
-        <form>
-            <!-- student ID -->
-            <label for="student-id">Student ID:</label>
-            <input type="text" id="student-id" name="student-id"><br>
+        <table>
+            <tr>
+                <th>
+                    <label for="student-id">Student ID:</label>
+                </th>
+                <th>
+                    <label for="start_t">Start term:</label>
+                </th>
+                <th>
+                    <label for="end_t">End term:</label>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <!-- student ID -->
+                    <input type="text" id="student-id" name="student-id"><br>
+                </th>
+                <th>
+                    <!-- start  -->
+                    <input type="text" id="start_t" name="start_t"><br>
+                </th>
+                <th>
 
-            <!-- start  -->
-            <label for="start_t">Start term:</label>
-            <input type="text" id="start_t" name="start_t"><br>
+                    <!-- end  -->
+                    <input type="text" id="end_t" name="end_t"><br>
+                </th>
+                <th>
+                    <input type="submit" value="Submit">
+                </th>
 
-            <!-- end  -->
-            <label for="end_t">End term:</label>
-            <input type="text" id="end_t" name="end_t"><br>
-
-            <input type="submit" value="Submit">
-        </form>
+            </tr>
+        </table>
     </div>
 
     <div id="Review" style="display:none;">
         <h1>Review session</h1>
-        <form>
-            <!-- section id -->
-            <label for="section-id">Section id:</label>
-            <input type="text" id="section-id" name="section-id"><br>
+        <table>
+            <tr>
+                <th>
+                    <label for="section-id">Section id:</label>
+                </th>
+                <th>
+                    <label for="date"> Date:</label>
+                </th>
+                <th>
+                    <label for="start_time">Start time:</label>
+                </th>
+                <th>
+                    <label for="end_time">End time:</label>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <!-- section id -->
+                    <input type="text" id="section-id" name="section-id"><br>
 
-            <!-- date -->
-            <label for="date"> Date:</label>
-            <input type="date" id="date" name="date"><br>
-
-            <!-- start  -->
-            <label for="start_time">Start time:</label>
-            <input type="time" id="start_t" name="start_t"><br>
-        
-            <!-- end  -->
-            <label for="end_time">End time:</label>
-            <input type="time" id="end_time" name="end_time"><br>
-
-            <input type="submit" value="Submit">
-        </form>
+                </th>
+                <th>
+                    <!-- date -->
+                    <input type="date" id="date" name="date"><br>
+                </th>
+                <th>
+                    <!-- start  -->
+                    <input type="time" id="start_t" name="start_t"><br>
+                </th>
+                <th>
+                    <!-- end  -->
+                    <input type="time" id="end_time" name="end_time"><br>
+                </th>
+                <th>
+                    <input type="submit" value="Submit">
+                </th>
+            </tr>
+        </table>
     </div>
+
     <div id="Degree Requirements" style="display:none;">
         <h1>Degree Requirements' Info submition</h1>
-        <form>
-            <!-- degree -->
-            <label for="degree">Select Quarter:</label>
-            <select name="degree" id="degree">
-                <option value="0">--Select Degree--</option>
-                <option value="1">BS</option>
-                <option value="2">MS</option>
-                <option value="3"> MS/BS</option>
-                <option value="4">PhD</option>
-            </select><br>
+        <table>
+            <tr>
+                <th>
+                    <label for="degree">Select Quarter:</label>
+                </th>
+                <th>
+                    <label for="department">Department:</label>
+                </th>
+                <th>
+                    <label for="major">Major:</label>
+                </th>
+                <th>
+                    <label for="min-units">Total minimum units:</label>
+                </th>
+                <th>
+                    <label for="category">Category:</label>
+                </th>
+                <th>
+                    <label for="average_grade">Average Grade:</label>
+                </th>
+                <th>
+                    <label for="concentration">Concentration:</label>
+                </th>
+                <th>
+                    <label for="course">Course:</label>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <!-- degree -->
+                    <select name="degree" id="degree">
+                        <option value="0">--Select Degree--</option>
+                        <option value="1">BS</option>
+                        <option value="2">MS</option>
+                        <option value="3"> MS/BS</option>
+                        <option value="4">PhD</option>
+                    </select><br>
+                </th>
+                <th>
+                    <!-- Department -->
+                    <input type="text" id="department" name="department"><br>
+                </th>
+                <th>
+                    <!-- Major -->
+                    <input type="text" id="major" name="major"><br>
+                </th>
+                <th>
+                    <!-- total min units -->
+                    <input type="number" id="min-units" name="min-units"><br>
+                </th>
+                <th>
+                    <!-- category -->
+                    <input type="text" id="category" name="category"><br>
+                </th>
+                <th>
+                    <!-- Min average grade for category -->
+                    <input type="text" id="average_grade" name="average_grade"><br>
+                </th>
+                <th>
+                    <!-- concentration -->
+                    <input type="text" id="concentration" name="concentration"><br>
+                </th>
+                <th>
+                    <!-- course -->
+                    <input type="text" id="course" name="course"><br>
+                </th>
+                <th>
+                    <input type="submit" value="Submit">
 
-            <!-- Department -->
-            <label for="department">Department:</label>
-            <input type="text" id="department" name="department"><br>
-
-            <!-- Major -->
-            <label for="major">Major:</label>
-            <input type="text" id="major" name="major"><br>
-
-            <!-- total min units -->
-            <label for="min-units">Total minimum units:</label>
-            <input type="number" id="min-units" name="min-units"><br>
-
-            <!-- category -->
-            <label for="category">Category:</label>
-            <input type="text" id="category" name="category"><br>
-
-            <!-- Min average grade for category -->
-            <label for="average_grade">Average Grade:</label>
-            <input type="text" id="average_grade" name="average_grade"><br>
-
-            <!-- concentration -->
-            <label for="concentration">Concentration:</label>
-            <input type="text" id="concentration" name="concentration"><br>
-
-            <!-- course -->
-            <label for="course">Course:</label>
-            <input type="text" id="course" name="course"><br>
-
-            <input type="submit" value="Submit">
-        </form>
-	</div>
+                </th>
+            </tr>
+        </table>
+    </div>
 
 </body>
+
 </html>
