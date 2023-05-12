@@ -79,7 +79,9 @@
     <div id="Student" style="display:none;">
         <h1>Student Entry Form</h1>
         <table id="student">
+            <!-- Student table -->
             <tr>
+                <th><label>Enter Student:</label></th>
                 <th>
                     <!-- student ID -->
                     <label for="student_id">Student ID:</label>
@@ -113,6 +115,7 @@
 
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <!-- student ID -->
                     <input type="text" id="student_id" name="student_id"><br>
@@ -149,7 +152,9 @@
                     <input type="submit" value="Insert" name="Student">
                 </th>
             </tr>
+            <!-- Undergrad Table -->
             <tr>
+                <th><label>Register Student as Undergraduate:</label></th>
                 <th>
                     <!-- student ID -->
                     <label for="student_id">Student ID:</label>
@@ -159,6 +164,7 @@
                 </th>
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <!-- student ID -->
                     <input type="text" id="student_id" name="student_id"><br>
@@ -180,8 +186,9 @@
                     <input type="submit" value="Insert" name="Undergraduates">
                 </th>
             </tr>
-            </tr>
+            <!-- grad Table -->
             <tr>
+                <th><label>Register student as a Graduate</label></th>
                 <th>
                     <!-- student ID -->
                     <label for="student_id">Student ID:</label>
@@ -189,8 +196,15 @@
                 <th>
                     <label for="level"> Degree:</label>
                 </th>
+                <th>
+                    <label for="department">Department:</label>
+                </th>
+                <th>
+                    <label for="thesis_name">Thesis Name:</label>
+                </th>
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <!-- student ID -->
                     <input type="text" id="student_id" name="student_id"><br>
@@ -205,10 +219,18 @@
                     </select><br>
                 </th>
                 <th>
+                    <input type="text" id="department" name="department">
+                </th>
+                <th>
+                    <input type="thesis_name" id="thesis_name" name="thesis_name">
+                </th>
+                <th>
                     <input type="submit" value="Insert" name="Graduates">
                 </th>
             </tr>
+            <!-- Degrees table -->
             <tr>
+                <th><label>Log Students Previous Degree's Obtained</label></th>
                 <th>
                     <!-- student ID -->
                     <label for="student_id">Student ID:</label>
@@ -221,6 +243,7 @@
                 </th>
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <!-- student ID -->
                     <input type="text" id="student_id" name="student_id"><br>
@@ -242,7 +265,9 @@
                     <input type="submit" value="Insert" name="Previous_D">
                 </th>
             </tr>
+            <!-- UCSD attendence -->
             <tr>
+                <th><label>Register student's Enrollemnt at UCSD</label></th>
                 <th>
                     <label for="student_id">Student ID:</label>
                 </th>
@@ -254,6 +279,7 @@
                 </th>
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <!-- student ID -->
                     <input type="text" id="student_id" name="student_id"><br>
@@ -272,13 +298,14 @@
                 </th>
             </tr>
         </table>
-        </table>
     </div>
 
     <div id="Faculty" style="display:none;">
         <h1>Faculty Entry Form</h1>
         <table>
+            <!-- faculty table -->
             <tr>
+                <th><label>Enter Faculty:</label></th>
                 <th>
                     <!-- Fac-Name -->
                     <label for="name">Name:</label>
@@ -293,6 +320,7 @@
                 </th>
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <!-- Fac-Name -->
                     <input type="text" id="name" name="name"><br>
@@ -317,9 +345,14 @@
     <div id="Course" style="display:none;">
         <h1>Course Entry Form</h1>
         <table>
+            <!-- "Course table" -->
             <tr>
+                <th><label>Add Course:</label></th>
                 <th>
                     <label for="c_number">Course number:</label>
+                </th>
+                <th>
+                    <label for="consent">Consent From Professor:</label>
                 </th>
                 <th>
                     <label for="department">Course Department:</label>
@@ -338,9 +371,13 @@
                 </th>
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <!-- course number -->
                     <input type="text" id="c_number" name="c_number"><br>
+                </th>
+                <th>
+                    <input type="checkbox" id="consent" name="consent"><br>
                 </th>
                 <th>
                     <!-- course department -->
@@ -372,9 +409,10 @@
                     <input type="submit" value="Insert" name="Course">
                 </th>
             </tr>
-            <tr>
+            
+            <!-- <tr>
                 <th>
-                    <!-- course number -->
+                    course number
                     <label for="c_number">Course number:</label>
                 </th>
                 <th>
@@ -383,81 +421,90 @@
             </tr>
             <tr>
                 <th>
-                    <!-- course number -->
+                    course number
                     <input type="text" id="c_number" name="c_number"><br>
                 </th>
                 <th>
-                    <!-- course consent -->
+                    course consent
                     <input type="text" id="consent" name="consent"><br>
                 </th>
                 <th>
                     <input type="submit" value="Insert" name="Consent">
                 </th>
-            </tr>
+            </tr> -->
+            <!-- Prerequirement Table -->
             <tr>
+                <th><label>Add Pre-Requirements to a course:</label></th>
                 <th>
                     <!-- course number -->
                     <label for="c_number">Course number:</label>
                 </th>
                 <th>
-                    <label for="pre_req">pre_requirement Course number</label>
+                    <label for="pre_c_number">pre_requirement Course number</label>
                 </th>
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <!-- course number -->
                     <input type="text" id="c_number" name="c_number"><br>
                 </th>
                 <th>
                     <!-- course pre req -->
-                    <input type="text" id="pre_req" name="pre_req">
+                    <input type="text" id="pre_c_number" name="pre_c_number">
                 </th>
                 <th>
-                    <input type="submit" value="Insert">
+                    <input type="submit" value="Insert" name="Prerequirement">
                 </th>
             </tr>
+            <!-- cat_belong Table -->
             <tr>
+                <th>Add a course to a Category:</th>
                 <th>
                     <!-- course number -->
                     <label for="c_number">Course number:</label>
                 </th>
                 <th>
-                    <label for="category">Category Name:</label>
+                    <label for="c_name">Category Name:</label>
                 </th>
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <!-- course number -->
                     <input type="text" id="c_number" name="c_number"><br>
                 </th>
                 <th>
                     <!-- course pre req -->
-                    <input type="text" id="category" name="category">
+                    <input type="text" id="c_name" name="c_name">
                 </th>
                 <th>
-                    <input type="submit" value="Insert">
+                    <input type="submit" value="Insert" name="cat_belong">
                 </th>
             </tr>
+            <!-- con_belong Table -->
             <tr>
+                <th><label>Add a course to Concentration:</label></th>
                 <th>
                     <!-- course number -->
                     <label for="c_number">Course number:</label>
                 </th>
                 <th>
-                    <label for="concentration">Concentration Name:</label>
+                    <label for="con_name">Concentration Name:</label>
                 </th>
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <!-- course number -->
                     <input type="text" id="c_number" name="c_number"><br>
                 </th>
                 <th>
                     <!-- course pre req -->
-                    <input type="text" id="concentration" name="concentration">
+                    <input type="text" id="con_name" name="con_name">
                 </th>
                 <th>
-                    <input type="submit" value="Insert">
+                    <input type="submit" value="Insert" name="con_belong">
                 </th>
             </tr>
         </table>
@@ -466,18 +513,11 @@
     <div id="Class" style="display:none;">
         <h1>Class Entry Form</h1>
         <table>
+            <!-- Section Table -->
             <tr>
-                <th>
-                    <label for="c_number">Course number:</label>
-                </th>
-                <th>
-                    <label for="title">Title:</label>
-                </th>
+                <th><label>Add Section:</label></th>
                 <th>
                     <label for="section_id">Section id:</label>
-                </th>
-                <th>
-                    <label for="section_quarter">Select Quarter:</label>
                 </th>
                 <th>
                     <label for="s_year">Year:</label>
@@ -486,56 +526,10 @@
                     <label for="enroll_limit">Enrollement Limit:</label>
                 </th>
                 <th>
-                    <label for="mandatory">mandatory Mandatory?</label>
-                </th>
-            </tr>
-            <tr>
-                <th>
-                    <!-- course number -->
-                    <input type="text" id="c_number" name="c_number"><br>
-
+                    <label for="mandatory">Mandatory?</label>
                 </th>
                 <th>
-                    <!-- title -->
-                    <input type="text" id="title" name="title"><br>
-                </th>
-                <th>
-                    <!-- section id -->
-                    <input type="text" id="section_id" name="section_id"><br>
-                </th>
-                <th>
-                    <!-- Section quarter -->
-                    <select name="section_quarter" id="section_quarter">
-                        <option value="0">--Select grade options--</option>
-                        <option value="1">Fall</option>
-                        <option value="2">Winter</option>
-                        <option value="3">Spring</option>
-                        <option value="4">Summer I</option>
-                        <option value="5">Summer II</option>
-                    </select><br>
-                </th>
-                <th>
-                    <!-- section year -->
-                    <input type="number" id="s_year" name="s_year"><br>
-                </th>
-                <th>
-                    <!-- enrollment limit -->
-                    <input type="number" id="enroll_limit" name="enroll_limit"><br>
-                </th>
-                <th>
-                    <!-- mandatory -->
-                    <input type="checkbox" id="mandatory" name="mandatory"><br>
-                </th>
-                <th>
-                    <input type="submit" value="Insert">
-                </th>
-            </tr>
-            <tr>
-                <th>
-                    <label for="section_id">Section id:</label>
-                </th>
-                <th>
-                    <label for="s_year">Year:</label>
+                    <label for="f_name"> Taught By:</label>
                 </th>
                 <th>
                     <label for="m_type">Section type:</label>
@@ -551,6 +545,7 @@
                 </th>
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <!-- section id -->
                     <input type="text" id="section_id" name="section_id"><br>
@@ -558,6 +553,17 @@
                 <th>
                     <!-- section year -->
                     <input type="number" id="s_year" name="s_year"><br>
+                </th>
+                <th>
+                    <!-- enrollment limit -->
+                    <input type="number" id="enroll_limit" name="enroll_limit"><br>
+                </th>
+                <th>
+                    <!-- mandatory -->
+                    <input type="checkbox" id="mandatory" name="mandatory"><br>
+                </th>
+                <th>
+                    <input type="text" id="f_name" name="f_name"><br>
                 </th>
                 <th>
                     <!-- Section quarter -->
@@ -594,13 +600,71 @@
                     <input type="submit" value="Insert">
                 </th>
             </tr>
+            <!-- Class Table -->
+            <tr>
+                <th><label>Add Class:</label></th>
+                <th>
+                    <label for="c_number">Course number:</label>
+                </th>
+                <th>
+                    <label for="title">Title:</label>
+                </th>
+                <th>
+                    <label for="section_id">Section id:</label>
+                </th>
+                <th>
+                    <label for="quarter">Select Quarter:</label>
+                </th>
+                <th>
+                    <label for="s_year">Year:</label>
+                </th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>
+                    <!-- course number -->
+                    <input type="text" id="c_number" name="c_number"><br>
+
+                </th>
+                <th>
+                    <!-- title -->
+                    <input type="text" id="title" name="title"><br>
+                </th>
+                <th>
+                    <!-- section id -->
+                    <input type="text" id="section_id" name="section_id"><br>
+                </th>
+                <th>
+                    <!-- Section quarter -->
+                    <select name="section_quarter" id="section_quarter">
+                        <option value="0">--Select grade options--</option>
+                        <option value="1">Fall</option>
+                        <option value="2">Winter</option>
+                        <option value="3">Spring</option>
+                        <option value="4">Summer I</option>
+                        <option value="5">Summer II</option>
+                    </select><br>
+                </th>
+                <th>
+                    <!-- section year -->
+                    <input type="number" id="s_year" name="s_year"><br>
+                </th>
+                <th>
+                    <input type="submit" value="Insert" name="Class">
+                </th>
+            </tr>
+            
         </table>
     </div>
 
     <div id="Enrollement" style="display:none;">
         <h1>Course Enrollement Current Quarter</h1>
         <table>
+            <!-- Enrollment Table -->
             <tr>
+                <th>
+                    <label>Enroll Courses:</label>
+                </th>
                 <th>
                     <label for="student_id">Student ID:</label>
                 </th>
@@ -611,9 +675,15 @@
                     <label for="section_id">Section id:</label>
                 </th>
                 <th>
+                    <label for="g_option">Grade Option:</label>
+                </th>
+                <th>
                     <label for="units"> Units:</label>
+                </th>
             </tr>
             <tr>
+                <th>
+                </th>
                 <th>
                     <!-- student ID -->
                     <input type="text" id="student_id" name="student_id"><br>
@@ -627,20 +697,26 @@
                     <input type="text" id="section_id" name="section_id"><br>
                 </th>
                 <th>
+                    <!-- Grade option -->
+                    <select name="g_option" id="g_option">
+                        <option value="0">--Select grade options--</option>
+                        <option value="1">Letter</option>
+                        <option value="2">S/U</option>
+                    </select>
+                </th>
+                <th>
                     <!-- Units -->
                     <input type="text" id="units" name="units"><br>
                 </th>
                 <th>
-                    <input type="submit" value="Insert">
+                    <input type="submit" value="Insert" name="Enrollment">
                 </th>
             </tr>
-        </table>
-    </div>
-
-    <div id="Classes Taken" style="display:none;">
-        <h1>Classes Taken in the Past</h1>
-        <table>
+            <!-- Waitlist -->
             <tr>
+                <th>
+                    <label>Waitlist Courses:</label>
+                </th>
                 <th>
                     <label for="student_id">Student ID:</label>
                 </th>
@@ -649,6 +725,64 @@
                 </th>
                 <th>
                     <label for="section_id">Section id:</label>
+                </th>
+                <th>
+                    <label for="g_option">Grade Option:</label>
+                </th>
+                <th>
+                    <label for="units"> Units:</label>
+                </th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>
+                    <!-- student ID -->
+                    <input type="text" id="student_id" name="student_id"><br>
+                </th>
+                <th>
+                    <!-- course number -->
+                    <input type="text" id="c_number" name="c_number"><br>
+                </th>
+                <th>
+                    <!-- section id -->
+                    <input type="text" id="section_id" name="section_id"><br>
+                </th>
+                <th>
+                    <!-- Grade option -->
+                    <select name="g_option" id="g_option">
+                        <option value="0">--Select grade options--</option>
+                        <option value="1">Letter</option>
+                        <option value="2">S/U</option>
+                    </select>
+                </th>
+                <th>
+                    <!-- Units -->
+                    <input type="text" id="units" name="units"><br>
+                </th>
+                <th>
+                    <input type="submit" value="Insert" name="Waitlist">
+                </th>
+            </tr>
+        </table>
+    </div>
+
+    <div id="Classes Taken" style="display:none;">
+        <h1>Classes Taken in the Past</h1>
+        <table>
+            <!-- Enrollment Table -->
+            <tr>
+                <th><label>Register a Class Student has Taken:</label></th>
+                <th>
+                    <label for="student_id">Student ID:</label>
+                </th>
+                <th>
+                    <label for="c_number">Course number:</label>
+                </th>
+                <th>
+                    <label for="section_id">Section id:</label>
+                </th>
+                <th>
+                    <label for="g_option">Grade Option:</label>
                 </th>
                 <th>
                     <label for="units"> Units:</label>
@@ -658,6 +792,7 @@
                 </th>
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <!-- student ID -->
                     <input type="text" id="student_id" name="student_id"><br>
@@ -669,6 +804,14 @@
                 <th>
                     <!-- section id -->
                     <input type="text" id="section_id" name="section_id"><br>
+                </th>
+                <th>
+                    <!-- Grade option -->
+                    <select name="g_option" id="g_option">
+                        <option value="0">--Select grade options--</option>
+                        <option value="1">Letter</option>
+                        <option value="2">S/U</option>
+                    </select>
                 </th>
                 <th>
                     <!-- Units -->
@@ -679,17 +822,18 @@
                     <input type="number" id="grade" name="grade"><br>
                 </th>
                 <th>
-                    <input type="submit" value="Insert">
+                    <input type="submit" value="Insert" name="Enrollment">
                 </th>
             </tr>
-
         </table>
     </div>
 
     <div id="Thesis" style="display:none;">
         <h1>Thesis Committee Submission</h1>
         <table>
+            <!-- Thesis_Committee Table -->
             <tr>
+                <th><label>Submit Thesis Committee:</label></th>
                 <th>
                     <label for="student_id">Student ID:</label>
                 </th>
@@ -701,6 +845,7 @@
                 </th>
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <!-- student ID -->
                     <input type="text" id="student_id" name="student_id"><br>
@@ -714,7 +859,34 @@
                     <input type="text" id="thesis_name" name="thesis_name"><br>
                 </th>
                 <th>
-                    <input type="submit" value="Insert">
+                    <input type="submit" value="Insert" name="Thesis_Committee">
+
+                </th>
+
+            </tr>
+
+            <!-- Advisory Table -->
+            <tr>
+                <th><label>Submit Advisor:</label></th>
+                <th>
+                    <label for="student_id">Student ID:</label>
+                </th>
+                <th>
+                    <label for="f_name">Faculty Name:</label>
+                </th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>
+                    <!-- student ID -->
+                    <input type="text" id="student_id" name="student_id"><br>
+                </th>
+                <th>
+                    <!-- Fac-Name -->
+                    <input type="text" id="f_name" name="f_name"><br>
+                </th>
+                <th>
+                    <input type="submit" value="Insert" name="Advisory">
 
                 </th>
 
@@ -725,7 +897,9 @@
     <div id="Probation" style="display:none;">
         <h1>Probation Info Submission</h1>
         <table>
+            <!-- Probation Table -->
             <tr>
+                <th><label>Register Student Probation Period:</label></th>
                 <th>
                     <label for="student_id">Student ID:</label>
                 </th>
@@ -737,6 +911,7 @@
                 </th>
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <!-- student ID -->
                     <input type="text" id="student_id" name="student_id"><br>
@@ -751,7 +926,7 @@
                     <input type="text" id="end_t" name="end_t"><br>
                 </th>
                 <th>
-                    <input type="submit" value="Insert">
+                    <input type="submit" value="Insert" name="Probation">
                 </th>
             </tr>
         </table>
@@ -760,7 +935,9 @@
     <div id="Review" style="display:none;">
         <h1>Review session</h1>
         <table>
+            <!-- Review Table -->
             <tr>
+                <th><label>Register Review for Section:</label></th>
                 <th>
                     <label for="section_id">Section id:</label>
                 </th>
@@ -778,6 +955,7 @@
                 </th>
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <!-- section id -->
                     <input type="text" id="section_id" name="section_id"><br>
@@ -800,7 +978,7 @@
                     <input type="time" id="end_t" name="end_t"><br>
                 </th>
                 <th>
-                    <input type="submit" value="Insert">
+                    <input type="submit" value="Insert" name="Review">
                 </th>
             </tr>
         </table>
@@ -809,7 +987,9 @@
     <div id="Degree Requirements" style="display:none;">
         <h1>Degree Requirements' Info submition</h1>
         <table>
+            <!-- UCSD_Degree Table -->
             <tr>
+                <th><label>Register UCSD Degree:</label></th>
                 <th>
                     <label for="degree">Select Degree:</label>
                 </th>
@@ -824,6 +1004,7 @@
                 </th>
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <!-- degree -->
                     <select name="degree" id="degree">
@@ -850,7 +1031,10 @@
                     <input type="submit" value="Insert">
                 </th>
             </tr>
+
+            <!-- Cat_Requirement Table -->
             <tr>
+                <th><label>Register Category Requirements for Degree:</label></th>
                 <th>
                     <label for="degree">Select Degree:</label>
                 </th>
@@ -871,6 +1055,7 @@
                 </th>
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <!-- degree -->
                     <select name="degree" id="degree">
@@ -902,7 +1087,10 @@
                     <input type="submit" value="Insert">
                 </th>
             </tr>
+
+            <!-- Con_Requirements Table -->
             <tr>
+                <th><label>Register Concentration Requirements for Degree:</label></th>
                 <th>
                     <label for="degree">Select Degree:</label>
                 </th>
@@ -923,6 +1111,7 @@
                 </th>
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <!-- degree -->
                     <select name="degree" id="degree">
@@ -961,7 +1150,9 @@
     <div id="Research" style="display:none;">
         <h1>Research</h1>
         <table>
+            <!-- Research Table -->
             <tr>
+                <th><label>Register Research:</label></th>
                 <th>
                     <label for="name"> Research Name:</label>
                 </th>
@@ -970,6 +1161,7 @@
                 </th>
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <!-- total min units -->
                     <input type="text" id="name" name="name"><br>
@@ -979,10 +1171,13 @@
                     <input type="number" id="funding" name="funding"><br>
                 </th>
                 <th>
-                    <input type="submit" value="Insert">
+                    <input type="submit" value="Insert" name="Research">
                 </th>
             </tr>
+
+            <!-- Research_lead Table -->
             <tr>
+                <th><label>Register Research Lead with Faculty:</label></th>
                 <th>
                     <label for="name"> Research Name:</label>
                 </th>
@@ -991,6 +1186,7 @@
                 </th>
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <!-- total min units -->
                     <input type="text" id="name" name="name"><br>
@@ -1003,7 +1199,10 @@
                     <input type="submit" value="Insert">
                 </th>
             </tr>
+
+            <!-- Work_on_Research -->
             <tr>
+                <th><label>Register Student on Research:</label></th>
                 <th>
                     <label for="name"> Research Name:</label>
                 </th>
@@ -1015,6 +1214,7 @@
                 </th>
             </tr>
             <tr>
+                <th></th>
                 <th>
                     <input type="text" id="name" name="name"><br>
                 </th>
