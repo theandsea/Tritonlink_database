@@ -213,17 +213,31 @@
     <div class="content" id="mainContent">
       <p>Click on a menu item to see the content. 
       </p>
+      
+      <%@ page language="java" import="java.util.HashMap" %> 
+      <%
+      // not import java.util.HashMap
+      HashMap<String, String[]> page_tables=new HashMap<String, String[]>(){{
+          put("student",new String[]{"section","student"});
+          put("section",new String[]{"student"});
+        }};
+      %>
+
       <!-- set the scripting lang to java and sql -->
       <%@ page language="java" import="java.sql.*" %>
       <%@ page language="java" import="net.FTM" %>
-      
       <%
+
         if (request.getMethod().equals("GET"))
           if (request.getParameterMap().containsKey("type")&&request.getParameter("type").equals("general")){
-            String[][] res=FTM.tablename_schema_data(conn.createStatement(), request.getParameter("table_name")); 
-            // entity_table(res,out,request.getParameter("table_name"));
-            // maybe just render the data in the front end is easier to mange ???
-            out.println(sql_js(res, request.getParameter("table_name")));
+            String tablename=request.getParameter("table_name");
+            String[] related_tablename = page_tables.get(tablename);
+            for(int i=0;i<related_tablename.length;i++){// 
+              String[][] res=FTM.tablename_schema_data(conn.createStatement(), related_tablename[i]);
+              // entity_table(res,out,request.getParameter("table_name"));
+              // maybe just render the data in the front end is easier to mange ???
+              out.println(sql_js(res, related_tablename[i]));
+            }
         }
       %>
     </div>
