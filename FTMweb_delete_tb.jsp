@@ -13,10 +13,10 @@
         String xx="not executed";
         try{
             DriverManager.registerDriver(new org.postgresql.Driver());
-            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost/tritonlink?user=postgres&password=123456");
+            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost/postgres?user=postgres&password=12345");
             Statement stmt = conn.createStatement();
             xx = "1";
-            String[] table_names = {"Student", "Times", "Degree", "Faculty", "Meeting_Times", "Course", "Section", "Research", "Thesis", "Category", "Concentration", "UCSD_Degree", "Undergraduates", "Graduates", "Attendance", "Probation", "Previous_D", "Weekly_Meeting", "Review", "Enrollment", "Equivalent_num", "Waitlist", "Class", "Work_on_Research", "Research_lead", "Thesis_Committee", "Advisory", "cat_belong", "con_belong", "Con_Requirement", "Cat_Requirement"};
+            String[] table_names = {"Student", "Times", "Degree", "Faculty", "Meeting_Times", "Course", "Section", "Research", "Thesis", "Category", "Concentration", "UCSD_Degree", "Undergraduates", "Graduates", "Attendance", "Probation", "Previous_D", "Weekly_Meeting", "Review", "Enrollment", "Equivalent_num", "Waitlist", "Class", "Work_on_Research", "Research_lead", "Thesis_Committee", "Advisory", "prerequirement", "cat_belong", "con_belong", "Con_Requirement", "Cat_Requirement"};
             xx = "2";
             for(int i=table_names.length-1;i>=0;i--){ // reversed in order for dependency
                 xx = "DROP TABLE IF EXISTS "+table_names[i]+";";

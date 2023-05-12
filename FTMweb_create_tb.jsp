@@ -13,20 +13,22 @@
         String xx="";
         try{
             DriverManager.registerDriver(new org.postgresql.Driver());
-            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost/tritonlink?user=postgres&password=123456");
+            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost/postgres?user=postgres&password=12345");
             Statement stmt = conn.createStatement();
             String sql_create = "CREATE TABLE Student ("+
 " student_id VARCHAR(50),"+
 " first_name VARCHAR(50) NOT NULL,"+
 " last_name VARCHAR(50) NOT NULL,"+
 " middle_name VARCHAR(50),"+
-" social_security_num VARCHAR(11) NOT NULL,"+
+" social_security_num VARCHAR(50) NOT NULL,"+
 " is_enrolled BOOLEAN,"+
+" major VARCHAR(50)," +
+" minor VARCHAR(50)," +
 " PRIMARY KEY (student_id)"+
 ");"+
 "CREATE TABLE Times("+
 "time_id INT,"+
-" quarter VARCHAR(10),"+
+" quarter VARCHAR(50),"+
 " school_year INT NOT NULL,"+
 " PRIMARY KEY (time_id)"+
 ");"+
@@ -51,11 +53,12 @@
 " PRIMARY KEY(m_id)"+
 ");"+
 "CREATE TABLE Course("+
-"c_number VARCHAR(10),"+
+"c_number VARCHAR(50),"+
 " consent BOOLEAN,"+
 " lab BOOLEAN,"+
-" unit INT NOT NULL,"+
-" g_option VARCHAR(10) NOT NULL,"+
+" min_units INT NOT NULL,"+
+" max_units INT NOT NULL,"+
+" g_option VARCHAR(50) NOT NULL,"+
 " department VARCHAR(50) NOT NULL,"+
 " PRIMARY KEY (c_number)"+
 ");"+
@@ -64,7 +67,9 @@
 " s_year INT NOT NULL,"+
 " enroll_limit INT NOT NULL,"+
 " mandatory BOOLEAN,"+
-" PRIMARY KEY(section_id,s_year)"+
+" f_name VARCHAR(50),"+
+" PRIMARY KEY(section_id,s_year),"+
+" FOREIGN KEY (f_name) REFERENCES Faculty(name)"+
 ");"+
 "CREATE TABLE Research("+
 "R_id INT,"+
@@ -97,8 +102,6 @@
 ""+
 "CREATE TABLE Undergraduates("+
 " student_id VARCHAR(50),"+
-" Major VARCHAR(50) NOT NULL,"+
-" Minor VARCHAR(50),"+
 " UCSD_College VARCHAR(50) NOT NULL,"+
 " FOREIGN KEY (student_id) REFERENCES Student(student_id)"+
 ");"+
@@ -137,7 +140,7 @@
 "CREATE TABLE Weekly_Meeting("+
 "section_id INT,"+
 " s_year INT,"+
-" m_type VARCHAR(10),"+
+" m_type VARCHAR(50),"+
 " m_id INT,"+
 " PRIMARY KEY(section_id,s_year,m_type),"+
 " FOREIGN KEY (section_id,s_year) REFERENCES Section(section_id,s_year),"+
@@ -153,35 +156,39 @@
 ");"+
 "CREATE TABLE Enrollment("+
 "student_id VARCHAR(50),"+
+" c_number VARCHAR(50),"+
 " section_id INT,"+
 " s_year INT,"+
-" status VARCHAR(20) NOT NULL,"+
 " units INT NOT NULL,"+
-" grade VARCHAR(10) NOT NULL,"+
+" grade VARCHAR(50) NOT NULL,"+
 " PRIMARY KEY (student_id,Section_id, s_year),"+
 " FOREIGN KEY (student_id) REFERENCES Student(student_id),"+
+" FOREIGN KEY (c_number) REFERENCES Course(c_number),"+
 " FOREIGN KEY (section_id,s_year) REFERENCES Section(section_id,s_year)"+
 ");"+
 "CREATE TABLE Equivalent_num("+
-"old_num VARCHAR(20),"+
+"old_num VARCHAR(50),"+
 " the_year INT,"+
-" c_number VARCHAR(10),"+
+" c_number VARCHAR(50),"+
 " PRIMARY KEY (old_num, the_year),"+
 " FOREIGN KEY (c_number) REFERENCES Course(c_number)"+
 ");"+
 "CREATE TABLE Waitlist("+
 "student_id VARCHAR(50),"+
 " section_id INT,"+
+" c_number VARCHAR(50),"+
 " s_year INT,"+
-" option VARCHAR(20) NOT NULL,"+
+" option VARCHAR(50) NOT NULL,"+
 " units INT NOT NULL,"+
 " PRIMARY KEY (student_id,Section_id, s_year),"+
 " FOREIGN KEY (student_id) REFERENCES Student(student_id),"+
+" FOREIGN KEY (c_number) REFERENCES Course(c_number),"+
 " FOREIGN KEY (section_id,s_year) REFERENCES Section(section_id,s_year)"+
 ");"+
 "CREATE TABLE Class("+
-"c_number VARCHAR(10),"+
+"c_number VARCHAR(50),"+
 " section_id INT,"+
+" quarter VARCHAR(50),"+
 " s_year INT,"+
 " title VARCHAR(50) NOT NULL,"+
 " PRIMARY KEY (c_number,Section_id, s_year),"+
@@ -215,15 +222,22 @@
 " FOREIGN KEY(thesis_id) REFERENCES Thesis(thesis_id),"+
 " FOREIGN KEY (f_name) REFERENCES Faculty(name)"+
 ");"+
+"CREATE TABLE Prerequirement("+
+" c_number VARCHAR(50),"+
+" pre_c_number VARCHAR(50),"+
+" PRIMARY KEY(c_number,pre_c_number),"+
+" FOREIGN KEY (c_number) REFERENCES Course(c_number),"+
+" FOREIGN KEY (pre_c_number) REFERENCES Course(c_number)"+
+");"+
 "CREATE TABLE cat_belong("+
-"c_number VARCHAR(10),"+
+"c_number VARCHAR(50),"+
 " c_id INT,"+
 " PRIMARY KEY(c_number,c_id),"+
 " FOREIGN KEY (c_number) REFERENCES Course(c_number),"+
 " FOREIGN KEY (c_id) REFERENCES Category(c_id)"+
 ");"+
 "CREATE TABLE con_belong("+
-"c_number VARCHAR(10),"+
+"c_number VARCHAR(50),"+
 " con_id INT,"+
 " PRIMARY KEY(c_number,con_id),"+
 " FOREIGN KEY (c_number) REFERENCES Course(c_number),"+
@@ -276,7 +290,7 @@
             }
 
             // not exists
-            String[] table_names = {"Student", "Times", "Degree", "Faculty", "Meeting_Times", "Course", "Section", "Research", "Thesis", "Category", "Concentration", "UCSD_Degree", "Undergraduates", "Graduates", "Attendance", "Probation", "Previous_D", "Weekly_Meeting", "Review", "Enrollment", "Equivalent_num", "Waitlist", "Class", "Work_on_Research", "Research_lead", "Thesis_Committee", "Advisory", "cat_belong", "con_belong", "Con_Requirement", "Cat_Requirement"};
+            String[] table_names = {"Student", "Times", "Degree", "Faculty", "Meeting_Times", "Course", "Section", "Research", "Thesis", "Category", "Concentration", "UCSD_Degree", "Undergraduates", "Graduates", "Attendance", "Probation", "Previous_D", "Weekly_Meeting", "Review", "Enrollment", "Equivalent_num", "Waitlist", "Class", "Work_on_Research", "Research_lead", "Thesis_Committee", "Advisory", "prerequirement" ,"cat_belong", "con_belong", "Con_Requirement", "Cat_Requirement"};
             xx += "<br>"+ String.valueOf(table_names.length)+"__"+String.valueOf(table_res.length);
             for(int j=0;j<table_names.length;j++){
                 Boolean exist=false;
