@@ -15,7 +15,7 @@
             DriverManager.registerDriver(new org.postgresql.Driver());
             Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost/postgres?user=postgres&password=12345");
             Statement stmt = conn.createStatement();
-            String sql_create = "CREATE TABLE Student ("+
+            String sql_create = "CREATE TABLE student ("+
 " student_id VARCHAR(50),"+
 " first_name VARCHAR(50) NOT NULL,"+
 " last_name VARCHAR(50) NOT NULL,"+
@@ -26,25 +26,25 @@
 " minor VARCHAR(50)," +
 " PRIMARY KEY (student_id)"+
 ");"+
-"CREATE TABLE Times("+
+"CREATE TABLE times("+
 "time_id INT,"+
 " quarter VARCHAR(50),"+
 " school_year INT NOT NULL,"+
 " PRIMARY KEY (time_id)"+
 ");"+
-"CREATE TABLE Degree("+
+"CREATE TABLE degree("+
 "degree_id INT,"+
 "degree VARCHAR(50) NOT NULL,"+
 " school VARCHAR(50) NOT NULL,"+
 " PRIMARY KEY(degree_id)"+
 ");"+
-"CREATE TABLE Faculty("+
+"CREATE TABLE faculty("+
 "name VARCHAR(50),"+
 " department VARCHAR(50) NOT NULL,"+
 " title VARCHAR(50) NOT NULL,"+
 " PRIMARY KEY(name)"+
 ");"+
-"CREATE TABLE Meeting_Times("+
+"CREATE TABLE meeting_Times("+
 "m_id INT,"+
 " m_day VARCHAR (50) NOT NULL,"+
 " start_t time,"+
@@ -52,7 +52,7 @@
 " room VARCHAR (50) NOT NULL,"+
 " PRIMARY KEY(m_id)"+
 ");"+
-"CREATE TABLE Course("+
+"CREATE TABLE course("+
 "c_number VARCHAR(50),"+
 " consent BOOLEAN,"+
 " lab BOOLEAN,"+
@@ -62,16 +62,16 @@
 " department VARCHAR(50) NOT NULL,"+
 " PRIMARY KEY (c_number)"+
 ");"+
-"CREATE TABLE Section("+
+"CREATE TABLE section("+
 "section_id INT,"+
 " s_year INT NOT NULL,"+
 " enroll_limit INT NOT NULL,"+
 " mandatory BOOLEAN,"+
 " f_name VARCHAR(50),"+
 " PRIMARY KEY(section_id,s_year),"+
-" FOREIGN KEY (f_name) REFERENCES Faculty(name)"+
+" FOREIGN KEY (f_name) REFERENCES faculty(name)"+
 ");"+
-"CREATE TABLE Research("+
+"CREATE TABLE research("+
 "R_id INT,"+
 " name VARCHAR(50) NOT NULL,"+
 " funding INT,"+
@@ -82,17 +82,17 @@
 " thesis_name VARCHAR(50),"+
 " PRIMARY KEY(thesis_id)"+
 ");"+
-"CREATE TABLE Category("+
+"CREATE TABLE category("+
 "c_id INT,"+
 " c_name VARCHAR(50),"+
 " PRIMARY KEY (c_id)"+
 ");"+
-"CREATE TABLE Concentration("+
+"CREATE TABLE concentration("+
 "con_id INT,"+
 " con_name VARCHAR(50),"+
 " PRIMARY KEY (con_id)"+
 ");"+
-"CREATE TABLE UCSD_Degree("+
+"CREATE TABLE uCSD_Degree("+
 "department VARCHAR(50),"+
 " major VARCHAR(50),"+
 " level VARCHAR(50),"+
@@ -100,61 +100,61 @@
 " PRIMARY KEY (department,major,level)"+
 ");"+
 ""+
-"CREATE TABLE Undergraduates("+
+"CREATE TABLE undergraduates("+
 " student_id VARCHAR(50),"+
 " UCSD_College VARCHAR(50) NOT NULL,"+
-" FOREIGN KEY (student_id) REFERENCES Student(student_id)"+
+" FOREIGN KEY (student_id) REFERENCES student(student_id)"+
 ");"+
 ""+
-"CREATE TABLE Graduates("+
+"CREATE TABLE graduates("+
 " student_id VARCHAR(50),"+
 " department VARCHAR(50) NOT NULL,"+
 " level VARCHAR(50) NOT NULL,"+
 " thesis_id INT,"+
-" FOREIGN KEY (student_id) REFERENCES Student(student_id),"+
-" FOREIGN KEY (thesis_id) REFERENCES Thesis(thesis_id)"+
+" FOREIGN KEY (student_id) REFERENCES student(student_id),"+
+" FOREIGN KEY (thesis_id) REFERENCES thesis(thesis_id)"+
 ");"+
-"CREATE TABLE Attendance("+
+"CREATE TABLE attendance("+
 "student_id VARCHAR(50),"+
 " start_t INT,"+
 " end_t INT,"+
-" FOREIGN KEY (student_id) REFERENCES Student(student_id),"+
-" FOREIGN KEY (start_t) REFERENCES Times(time_id),"+
-" FOREIGN KEY (end_t) REFERENCES Times(time_id)"+
+" FOREIGN KEY (student_id) REFERENCES student(student_id),"+
+" FOREIGN KEY (start_t) REFERENCES times(time_id),"+
+" FOREIGN KEY (end_t) REFERENCES times(time_id)"+
 ");"+
-"CREATE TABLE Probation("+
+"CREATE TABLE probation("+
 "student_id VARCHAR(50),"+
 " start_t INT,"+
 " end_t INT,"+
-" FOREIGN KEY (student_id) REFERENCES Student(student_id),"+
-" FOREIGN KEY (start_t) REFERENCES Times(time_id),"+
-" FOREIGN KEY (end_t) REFERENCES Times(time_id)"+
+" FOREIGN KEY (student_id) REFERENCES student(student_id),"+
+" FOREIGN KEY (start_t) REFERENCES times(time_id),"+
+" FOREIGN KEY (end_t) REFERENCES times(time_id)"+
 ");"+
-"CREATE TABLE Previous_D("+
+"CREATE TABLE previous_D("+
 "student_id VARCHAR(50),"+
 " degree_id INT,"+
-" FOREIGN KEY (student_id) REFERENCES Student(student_id),"+
-" FOREIGN KEY (degree_id) REFERENCES Degree(degree_id)"+
+" FOREIGN KEY (student_id) REFERENCES student(student_id),"+
+" FOREIGN KEY (degree_id) REFERENCES degree(degree_id)"+
 ");"+
 ""+
-"CREATE TABLE Weekly_Meeting("+
+"CREATE TABLE weekly_Meeting("+
 "section_id INT,"+
 " s_year INT,"+
 " m_type VARCHAR(50),"+
 " m_id INT,"+
 " PRIMARY KEY(section_id,s_year,m_type),"+
-" FOREIGN KEY (section_id,s_year) REFERENCES Section(section_id,s_year),"+
-" FOREIGN KEY (m_id) REFERENCES Meeting_Times(m_id) "+
+" FOREIGN KEY (section_id,s_year) REFERENCES section(section_id,s_year),"+
+" FOREIGN KEY (m_id) REFERENCES meeting_Times(m_id) "+
 ");"+
-"CREATE TABLE Review("+
+"CREATE TABLE review("+
 "section_id INT,"+
 " s_year INT,"+
 " date date,"+
 " start_t time,"+
 " end_t time,"+
-" FOREIGN KEY (section_id,s_year) REFERENCES Section(section_id,s_year)"+
+" FOREIGN KEY (section_id,s_year) REFERENCES section(section_id,s_year)"+
 ");"+
-"CREATE TABLE Enrollment("+
+"CREATE TABLE enrollment("+
 "student_id VARCHAR(50),"+
 " c_number VARCHAR(50),"+
 " section_id INT,"+
@@ -162,18 +162,18 @@
 " units INT NOT NULL,"+
 " grade VARCHAR(50) NOT NULL,"+
 " PRIMARY KEY (student_id,Section_id, s_year),"+
-" FOREIGN KEY (student_id) REFERENCES Student(student_id),"+
-" FOREIGN KEY (c_number) REFERENCES Course(c_number),"+
-" FOREIGN KEY (section_id,s_year) REFERENCES Section(section_id,s_year)"+
+" FOREIGN KEY (student_id) REFERENCES student(student_id),"+
+" FOREIGN KEY (c_number) REFERENCES course(c_number),"+
+" FOREIGN KEY (section_id,s_year) REFERENCES section(section_id,s_year)"+
 ");"+
-"CREATE TABLE Equivalent_num("+
+"CREATE TABLE equivalent_num("+
 "old_num VARCHAR(50),"+
 " the_year INT,"+
 " c_number VARCHAR(50),"+
 " PRIMARY KEY (old_num, the_year),"+
-" FOREIGN KEY (c_number) REFERENCES Course(c_number)"+
+" FOREIGN KEY (c_number) REFERENCES course(c_number)"+
 ");"+
-"CREATE TABLE Waitlist("+
+"CREATE TABLE waitlist("+
 "student_id VARCHAR(50),"+
 " section_id INT,"+
 " c_number VARCHAR(50),"+
@@ -181,85 +181,85 @@
 " option VARCHAR(50) NOT NULL,"+
 " units INT NOT NULL,"+
 " PRIMARY KEY (student_id,Section_id, s_year),"+
-" FOREIGN KEY (student_id) REFERENCES Student(student_id),"+
-" FOREIGN KEY (c_number) REFERENCES Course(c_number),"+
-" FOREIGN KEY (section_id,s_year) REFERENCES Section(section_id,s_year)"+
+" FOREIGN KEY (student_id) REFERENCES student(student_id),"+
+" FOREIGN KEY (c_number) REFERENCES course(c_number),"+
+" FOREIGN KEY (section_id,s_year) REFERENCES section(section_id,s_year)"+
 ");"+
-"CREATE TABLE Class("+
+"CREATE TABLE class("+
 "c_number VARCHAR(50),"+
 " section_id INT,"+
 " quarter VARCHAR(50),"+
 " s_year INT,"+
 " title VARCHAR(50) NOT NULL,"+
 " PRIMARY KEY (c_number,Section_id, s_year),"+
-" FOREIGN KEY (c_number) REFERENCES Course(c_number),"+
-" FOREIGN KEY (section_id,s_year) REFERENCES Section(section_id,s_year)"+
+" FOREIGN KEY (c_number) REFERENCES course(c_number),"+
+" FOREIGN KEY (section_id,s_year) REFERENCES section(section_id,s_year)"+
 ");"+
-"CREATE TABLE Work_on_Research("+
+"CREATE TABLE work_on_Research("+
 "student_id VARCHAR(50),"+
 " R_id INT,"+
 "hour_wage REAL,"+
 " PRIMARY KEY(student_id,R_id),"+
 " FOREIGN KEY (student_id) REFERENCES student(student_id),"+
-" FOREIGN KEY (R_id) REFERENCES Research(R_id)"+
+" FOREIGN KEY (R_id) REFERENCES research(R_id)"+
 ");"+
-"CREATE TABLE Research_lead("+
+"CREATE TABLE research_lead("+
 "f_name VARCHAR(50),"+
 " R_id INT,"+
 " PRIMARY KEY(f_name,R_id),"+
-" FOREIGN KEY (f_name) REFERENCES Faculty(name),"+
-" FOREIGN KEY (R_id) REFERENCES Research(R_id)"+
+" FOREIGN KEY (f_name) REFERENCES faculty(name),"+
+" FOREIGN KEY (R_id) REFERENCES research(R_id)"+
 ");"+
-"CREATE TABLE Thesis_Committee("+
+"CREATE TABLE thesis_Committee("+
 "thesis_id INT,"+
 " f_name VARCHAR(50),"+
-" FOREIGN KEY(thesis_id) REFERENCES Thesis(thesis_id),"+
-" FOREIGN KEY (f_name) REFERENCES Faculty(name)"+
+" FOREIGN KEY(thesis_id) REFERENCES thesis(thesis_id),"+
+" FOREIGN KEY (f_name) REFERENCES faculty(name)"+
 ");"+
-"CREATE TABLE Advisory("+
+"CREATE TABLE advisory("+
 "thesis_id INT,"+
 " f_name VARCHAR(50),"+
-" FOREIGN KEY(thesis_id) REFERENCES Thesis(thesis_id),"+
-" FOREIGN KEY (f_name) REFERENCES Faculty(name)"+
+" FOREIGN KEY(thesis_id) REFERENCES thesis(thesis_id),"+
+" FOREIGN KEY (f_name) REFERENCES faculty(name)"+
 ");"+
-"CREATE TABLE Prerequirement("+
+"CREATE TABLE prerequirement("+
 " c_number VARCHAR(50),"+
 " pre_c_number VARCHAR(50),"+
 " PRIMARY KEY(c_number,pre_c_number),"+
-" FOREIGN KEY (c_number) REFERENCES Course(c_number),"+
-" FOREIGN KEY (pre_c_number) REFERENCES Course(c_number)"+
+" FOREIGN KEY (c_number) REFERENCES course(c_number),"+
+" FOREIGN KEY (pre_c_number) REFERENCES course(c_number)"+
 ");"+
 "CREATE TABLE cat_belong("+
 "c_number VARCHAR(50),"+
 " c_id INT,"+
 " PRIMARY KEY(c_number,c_id),"+
-" FOREIGN KEY (c_number) REFERENCES Course(c_number),"+
-" FOREIGN KEY (c_id) REFERENCES Category(c_id)"+
+" FOREIGN KEY (c_number) REFERENCES course(c_number),"+
+" FOREIGN KEY (c_id) REFERENCES category(c_id)"+
 ");"+
 "CREATE TABLE con_belong("+
 "c_number VARCHAR(50),"+
 " con_id INT,"+
 " PRIMARY KEY(c_number,con_id),"+
-" FOREIGN KEY (c_number) REFERENCES Course(c_number),"+
-" FOREIGN KEY (con_id) REFERENCES Concentration(con_id)"+
+" FOREIGN KEY (c_number) REFERENCES course(c_number),"+
+" FOREIGN KEY (con_id) REFERENCES concentration(con_id)"+
 ");"+
-"CREATE TABLE Con_Requirement("+
+"CREATE TABLE con_Requirement("+
 "con_id INT,"+
 " department VARCHAR(50),"+
 " major VARCHAR(50),"+
 " level VARCHAR(50),"+
 " min_units INT,"+
-" FOREIGN KEY (con_id) REFERENCES Concentration(con_id),"+
-" FOREIGN KEY (department, major, level) REFERENCES UCSD_Degree(department, major,level)"+
+" FOREIGN KEY (con_id) REFERENCES concentration(con_id),"+
+" FOREIGN KEY (department, major, level) REFERENCES uCSD_Degree(department, major,level)"+
 ");"+
-"CREATE TABLE Cat_Requirement("+
+"CREATE TABLE cat_Requirement("+
 "c_id INT,"+
 " department VARCHAR(50),"+
 " major VARCHAR(50),"+
 " level VARCHAR(50),"+
 " min_units INT,"+
-" FOREIGN KEY (c_id) REFERENCES Category(c_id),"+
-" FOREIGN KEY (department, major, level) REFERENCES UCSD_Degree(department, major,level)"+
+" FOREIGN KEY (c_id) REFERENCES category(c_id),"+
+" FOREIGN KEY (department, major, level) REFERENCES uCSD_Degree(department, major,level)"+
 ");";
 
 // -- # relations in sql, make it not work
@@ -290,7 +290,7 @@
             }
 
             // not exists
-            String[] table_names = {"Student", "Times", "Degree", "Faculty", "Meeting_Times", "Course", "Section", "Research", "Thesis", "Category", "Concentration", "UCSD_Degree", "Undergraduates", "Graduates", "Attendance", "Probation", "Previous_D", "Weekly_Meeting", "Review", "Enrollment", "Equivalent_num", "Waitlist", "Class", "Work_on_Research", "Research_lead", "Thesis_Committee", "Advisory", "prerequirement" ,"cat_belong", "con_belong", "Con_Requirement", "Cat_Requirement"};
+            String[] table_names = {"student", "times", "degree", "faculty", "meeting_Times", "course", "section", "research", "thesis", "category", "concentration", "uCSD_Degree", "undergraduates", "graduates", "attendance", "probation", "previous_D", "weekly_Meeting", "review", "enrollment", "equivalent_num", "waitlist", "class", "work_on_Research", "research_lead", "thesis_Committee", "advisory", "prerequirement" ,"cat_belong", "con_belong", "con_Requirement", "cat_Requirement"};
             xx += "<br>"+ String.valueOf(table_names.length)+"__"+String.valueOf(table_res.length);
             for(int j=0;j<table_names.length;j++){
                 Boolean exist=false;
