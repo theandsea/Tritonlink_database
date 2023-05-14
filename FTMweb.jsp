@@ -166,7 +166,7 @@
       //</form>
         String html = "";
         for(int i=0;i<item.length;i++){
-          html += "<a href=\"?type=general&"+"table_name="+table_name[i]+ "\" >"+item[i]+"</a>\n";
+          html += "<a href=\"?type=general&"+"table_name="+table_name[i] +"\" >"+item[i]+"</a>\n";
         }
         // write
         myout.println(html);
@@ -186,7 +186,7 @@
     Connection conn=null;
     try{
         DriverManager.registerDriver(new org.postgresql.Driver());
-        conn = DriverManager.getConnection("jdbc:postgresql://localhost/tritonlink?user=postgres&password=123456");
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost/postgres?user=postgres&password=12345");
         //System.out.println("connected");
 
         // connection.close(); // move to the end
@@ -202,8 +202,10 @@
   <body>
     <div class="container">
     <div class="menu">
-      <% 
-        String[] item_name = new String[]{"student","enrollment","faculty"};
+    <%@ page import="java.util.*" %>
+      <%
+        
+        String[] item_name = new String[]{"student","faculty","course","class","enrollment","class taken", "thesis", "probation", "review", "degree requirements", "Research"};
         String[] table_name = item_name;
         item_menu_get(table_name,item_name,out);
       %>
@@ -217,10 +219,45 @@
       <%@ page language="java" import="java.util.HashMap" %> 
       <%
       // not import java.util.HashMap
-      HashMap<String, String[]> page_tables=new HashMap<String, String[]>(){{
-          put("student",new String[]{"section","student"});
-          put("section",new String[]{"student"});
-        }};
+        //HashMap<String, String[]> page_tables=new HashMap<String, String[]>(){{
+        //  put("student",new String[]{"section","student"});
+        //  put("section",new String[]{"student"});
+        //}};
+        HashMap<String, String[]> page_tables = new HashMap<>();
+        //populate hashmaps
+        String[] student = new String[]{"student","undergraduates","graduates","previous_d","attendance"};
+        //student tables
+        page_tables.put("student",student);
+        //faculty tables
+        String[] faculty = new String[]{"faculty"};
+        page_tables.put("faculty", faculty);
+        //course tables
+        String[] course = new String[]{"course","prerequirement","cat_belong","con_belong",};
+        page_tables.put("course", course);
+        //class tables
+        String[] classes = new String[]{"class","section", "weekly_meeting"};
+        page_tables.put("class",classes);
+        //enrolment tables
+        String[] enrollment = new String[]{"enrollment","waitlist"};
+        page_tables.put("enrollment",enrollment);
+        // class taken tables
+        String[] classTaken = new String[]{"enrollment"};
+        page_tables.put("class taken", classTaken);
+        //thesis
+        String[] thesis = new String[]{"thesis_committee","advisory"};
+        page_tables.put("thesis",thesis);
+        //probation tables
+        String[] probation = new String[]{"probation"};
+        page_tables.put("probation",probation);
+        //review tables
+        String[] review = new String[]{"review"};
+        page_tables.put("review",review);
+        //degree req tables
+        String[] degree_req = new String[]{"ucsd_degree","cat_requirement","con_requirement"};
+        page_tables.put("degree requirements", degree_req);
+        //research tables
+        String[] research = new String[]{"research","research_lead","work_on_research"};
+        page_tables.put("research", research);
       %>
 
       <!-- set the scripting lang to java and sql -->
