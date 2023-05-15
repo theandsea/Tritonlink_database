@@ -63,7 +63,7 @@ public class FTM {
                     String sql_now = java_string[i][j];
                     if (typename.equals("varchar")){
                         sql_now = "'"+sql_now+"'";
-                    } else if (typename.equals("bool")){
+                    } else if (typename.equals("bool") || typename.equals("int4")){
                         // same
                     } else {
                         throw new Exception("unhandled type "+typename);
@@ -96,16 +96,45 @@ public class FTM {
             Connection conn = DriverManager.getConnection(connURL, userName, password);
             System.out.println("connected");
             // Statement stmt = conn.createStatement();
+            // tablename_key_foreigntable_key(conn,"course");
 
 
             // for test the jsp
+            /*
             String table_name = "faculty";
             HashMap<String,String> request_data= new HashMap<String,String>(){{
                 put("name", "Christopher");
                 put("department","CSE");
                 put("title","Professor");
             }};
-            String action_type = "insert";
+            String table_name = "section";
+            HashMap<String,String> request_data= new HashMap<String,String>(){{
+                put("section_id", "132");
+                put("s_year","2023");
+                put("mandatory","true");
+                put("enroll_limit","8");
+                put("f_name","Christopher888");
+            }};
+
+            String table_name = "section";
+            HashMap<String,String> request_data= new HashMap<String,String>(){{
+                put("section_id", "132");
+                put("s_year","2023");
+                put("mandatory","true");
+                put("enroll_limit","8");
+                put("f_name","Christopher888");
+            }};*/
+            String table_name = "student";
+            HashMap<String,String> request_data= new HashMap<String,String>(){{
+                put("first_name", "132");
+                put("last_name","2023");
+                put("middle_name","true");
+                put("social_security_num","8");
+                put("student_id","100");
+            }};
+
+
+            String action_type = "delete";
 
 
             String[][] schema_type = FTM.tablename_schema(conn, table_name);
@@ -121,11 +150,16 @@ public class FTM {
             boolean ifsuccess = false;
             if (action_type.equals("insert")){
               ifsuccess = FTM.tablename_insert(conn.createStatement(),table_name, schema,data);
-              // localhost:8080/tritonlink/FTMweb_action.jsp?table_name=&type=insert&name=Christopher&department=CSE&title=Professor
+              // localhost:8080/tritonlink/FTMweb_action.jsp?table_name=faculty&type=insert&name=Christopher&department=CSE&title=Professor
             } else if (action_type.equals("update")){
-
+              ifsuccess = FTM.tablename_update(conn,table_name, schema,data);
+              // localhost:8080/tritonlink/FTMweb_action.jsp?table_name=faculty&type=update&name=Christopher88&department=ECE&title=Professor
             } else if (action_type.equals("delete")){
-
+              ifsuccess = FTM.tablename_delete(conn,table_name, schema,data);
+              // localhost:8080/tritonlink/FTMweb_action.jsp?table_name=faculty&type=delete&name=Christopher8&department=ECE&title=Professor
+            } else {
+              System.out.print("fail unhandled action type "+action_type);
+              throw new Exception("unhandled action type "+action_type);
             }
             System.out.println("'ifsuccess':"+ifsuccess+",");
             if (!ifsuccess){
@@ -310,6 +344,68 @@ public class FTM {
         return res.toArray(new String[0][]);
     }
 
+    public static String[] table_name_all(DatabaseMetaData metadata){
+        try {
+            // Get database metadata
+            ArrayList<String> res = new ArrayList<String>();
+
+            // Get all table names
+            ResultSet resultSet = metadata.getTables(null, null, null, new String[]{"TABLE"});
+            while (resultSet.next()) {
+                res.add(resultSet.getString("TABLE_NAME"));
+                // System.out.println(resultSet.getString("TABLE_NAME"));
+            }
+            return res.toArray(new String[0]);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static HashMap<String,HashMap<String,String>> tablename_key_foreigntable_key(Connection conn, String table_name) {
+        // get all tables who have a foreign key referencing this table
+        try {
+            DatabaseMetaData metadata = conn.getMetaData();
+            // get all the table
+            String[] tables = table_name_all(metadata);
+
+            // foreign_table, primary_key ---> foreign_key   .... translate
+            HashMap<String,HashMap<String,String>> foreign_primary_key = new HashMap<String,HashMap<String,String>>();
+            for (String table_f:tables){
+                ResultSet resultSet = metadata.getImportedKeys(null, null, table_f);
+                while (resultSet.next()) {
+                    String pkTableName = resultSet.getString("PKTABLE_NAME");
+                    String pkColumnName = resultSet.getString("PKCOLUMN_NAME");
+                    // String fkName = resultSet.getString("FK_NAME");
+                    String fkColumnName = resultSet.getString("FKCOLUMN_NAME");
+                    if (pkTableName.equals(table_name)){
+                        if(!foreign_primary_key.containsKey(table_f)){
+                            foreign_primary_key.put(table_f,new HashMap<String,String>());
+                        }
+                        foreign_primary_key.get(table_f).put(pkColumnName,fkColumnName);
+                    }
+                    /*
+                    System.out.println("Foreign Key Name: " + fkName);
+                    System.out.println("Foreign Key Column: " + fkColumnName);
+                    System.out.println("Primary Key Table: " + pkTableName);
+                    System.out.println("Primary Key Column: " + pkColumnName);
+                    System.out.println();*/
+                }
+                // try to print out
+                if (foreign_primary_key.containsKey(table_f)){
+                    System.out.println("=============check for "+table_f+"===============");
+                    HashMap<String,String> primary_foreign = foreign_primary_key.get(table_f);
+                    for(String primary : primary_foreign.keySet())
+                        System.out.println(primary + "  -->  " + primary_foreign.get(primary));
+                }
+            }
+            return foreign_primary_key;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     /*
      * public static String[][] tablename_schema(Statement stmt, String table_name)
      * {
@@ -447,7 +543,7 @@ public class FTM {
                     if (if_primary[i]){
                         sql_update += schema[i] +"="+ data[i];
                         if (i < last_primary_idx)
-                            sql_update += ",";
+                            sql_update += " and ";
                     }
                 sql_update += ";";
 
@@ -465,7 +561,8 @@ public class FTM {
         }
     }
 
-    public static boolean tablename_delete(Connection conn, String table_name, String[] schema, String[][] datas) {
+    public static boolean tablename_delete_old(Connection conn, String table_name, String[] schema, String[][] datas) {
+        // this only delete itself
         try {
             // first get the primary primary
             boolean[] if_primary = schema_ifprimary(conn, table_name,schema);
@@ -482,7 +579,7 @@ public class FTM {
 
             //UPDATE student set first_name = 'Jonathan', last_name = 'Doe', middle_name = 'J.', social_security_num = '123-45-6789', is_enrolled = true WHERE student_id = '1001';
             // must use ', not " ... error
-            // update data
+            // delete data
             Statement stmt = conn.createStatement();
 
             for (int k=0;k<datas.length;k++){
@@ -494,7 +591,7 @@ public class FTM {
                     if (if_primary[i]){
                         sql_delete += schema[i] +"="+ data[i];
                         if (i < last_primary_idx)
-                            sql_delete += ",";
+                            sql_delete += " and ";
                     }
                 sql_delete += ";";
 
@@ -502,6 +599,79 @@ public class FTM {
                 System.out.println(sql_delete);
 
                 // execute
+                stmt.executeUpdate(sql_delete);
+            }
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean tablename_delete(Connection conn, String table_name, String[] schema, String[][] datas) {
+        // this try to delete all related
+        try {
+            // first get the primary primary
+            boolean[] if_primary = schema_ifprimary(conn, table_name,schema);
+
+            int last_primary_idx = -1;
+            int last_non_idx = -1;
+            for(int i=0;i<schema.length;i++)
+                if(if_primary[i])
+                    last_primary_idx = i;
+
+            // get all related foreign table_key
+            HashMap<String,HashMap<String,String>> foreign_table_key= tablename_key_foreigntable_key( conn, table_name);
+
+            //UPDATE student set first_name = 'Jonathan', last_name = 'Doe', middle_name = 'J.', social_security_num = '123-45-6789', is_enrolled = true WHERE student_id = '1001';
+            // must use ', not " ... error
+            // update data
+            Statement stmt = conn.createStatement();
+
+            // create cmd, then execute
+            HashMap<String,String> sql_related_delete = new HashMap<String,String>();
+            String sql_delete;
+            // for (int k=0;k<datas.length;k++){
+            // String[] data = datas[k];
+            for(String[] data : datas){
+                // start
+                for(String table_t : foreign_table_key.keySet())
+                    sql_related_delete.put(table_t, "delete from " + table_t + " where ");
+                sql_delete = "delete from "+table_name + " where "; // can't merge, itself no need to translate
+
+                // where part---primary
+
+                // related
+                for(String table_f : foreign_table_key.keySet()){
+                    String related_sql = sql_related_delete.get(table_f);
+                    HashMap<String,String> primary_key_translate = foreign_table_key.get(table_f);
+                    for(int i=0;i<=last_primary_idx;i++)
+                        if (if_primary[i]){
+                            related_sql +=  primary_key_translate.get(schema[i]) +"="+ data[i];
+                            if (i < last_primary_idx)
+                                sql_delete += " and ";
+                        }
+                    related_sql += ";";
+                    sql_related_delete.put(table_f, related_sql);
+                }
+
+                // itself
+                for (int i=0;i<=last_primary_idx;i++)
+                    if (if_primary[i]){
+                        sql_delete += schema[i] +"="+ data[i];
+                        if (i < last_primary_idx)
+                            sql_delete += " and ";
+                    }
+                sql_delete += ";";
+
+
+                // print out + execute
+                for(String table_f : sql_related_delete.keySet()){
+                    System.out.println(table_f +"   --->   " + sql_related_delete.get(table_f));
+                    stmt.executeUpdate(sql_related_delete.get(table_f));
+                }
+                System.out.println(sql_delete);
                 stmt.executeUpdate(sql_delete);
             }
 
