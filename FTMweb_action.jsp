@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 {
-
   <% 
     // for initialization
     // why this can be written in funciton ??
@@ -21,7 +20,7 @@
 
   <%!
   public String json_reponse(String name,String value){
-    return "'"+name+"':'"+value+"',";
+    return "\""+name+"\":\""+value+"\",";
   }
   %>
 
@@ -32,7 +31,7 @@
 
     // get or post method not affect the get method
     // but only the send() message type affect it....getParameter(=), json(json)
-    if (request.getMethod().equals("GET"))
+    if (request.getMethod().equals("POST"))
         if (request.getParameterMap().containsKey("table_name")){
           String table_name = request.getParameter("table_name");
           String action_type = request.getParameter("type");
@@ -64,26 +63,31 @@
             } else if (action_type.equals("delete")){
               ifsuccess = FTM.tablename_delete(conn,table_name, schema,data);
               // localhost:8080/tritonlink/FTMweb_action.jsp?table_name=faculty&type=delete&name=Christopher8&department=ECE&title=Professor
+            } else {
+              out.print(json_reponse("fail","unhandled action type "+action_type));
+              throw new Exception("unhandled action type "+action_type);
             }
-            out.println("'ifsuccess':"+ifsuccess+",");
+            out.println(json_reponse("ifsuccess",String.valueOf(ifsuccess)));
             if (!ifsuccess){
-              out.println("'failure_detail': '(java)\t");
-              //for(int i=0;i<schema_type[0].length;i++)
-              //  out.print(schema_type[0][i]+"\t");
+              out.print("\"failure_detail\": \"(java)  "); // \t ... bad control character by json.parse in js
+              /*
+              for(int i=0;i<schema_type[0].length;i++)
+                out.print(schema_type[0][i]+"\t");
               for(int i=0;i<data_origin.length;i++)
                 out.print(data_origin[i]+"\t");
               if (data==null)
                 out.print("data is null");
-              for(int i=0;i<data[0].length;i++)
-                out.print(data[0][i]+"\t");
-              out.println("',");
+              */
+              for(int i=0;i<data_origin.length;i++)
+                out.print(data_origin[i]+"   ");
+              out.println("\",");
             }
 
           } catch(Exception e){
             // xx = "fail";
             out.println("(jsp)");
             // myout.println();
-            out.println("',");
+            out.println("\",");
             e.printStackTrace();
           }
       }
@@ -94,7 +98,9 @@
   <%
     try{
       conn.close();
-      out.println("'closed':true");
+      out.println("\"closed\":\"true\"");  
+      //"'closed':true" ... must use double-quoted property
+      // last one can't use json_response, no comma(,)
     }catch(Exception e){
         out.println("fail with close connection");
         // out.println(e.printStackTrace());
