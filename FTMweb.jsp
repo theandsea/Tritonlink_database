@@ -14,8 +14,8 @@
   <%!
     /*
     private void myFunc(String Bits, JspWriter myOut)
-    {  
-      try{ myOut.println("<div>"+Bits+"<br> successful haha zzz</div>"); } 
+    {
+      try{ myOut.println("<div>"+Bits+"<br> successful haha zzz</div>"); }
       catch(Exception eek) { }
     }
     */
@@ -26,7 +26,7 @@
       String type_sql="xx";
       String[][] res_html = new String[res_sql.length+1][res_sql[0].length];
       try {
-        // +1 as extra line for insert new 
+        // +1 as extra line for insert new
 
         // schema, just copy
         for(int i=0;i<2;i++)
@@ -41,14 +41,14 @@
             String string_html = null;
             if (type_sql.equals("varchar")){
               if (i==2) // for insert
-                string_html = "<input name=\""+res_sql[0][j]+"\" type=\"text\" value=\""+""+"\">"; 
+                string_html = "<input name=\""+res_sql[0][j]+"\" type=\"text\" value=\""+""+"\">";
               else
                 string_html = "<input name=\""+res_sql[0][j]+"\" type=\"text\" value=\""+(i-1)+"__"+string_sql+"\">";
             } else if(type_sql.equals("bool")){
               if (i==2) // for insert
                 string_html = "<input name=\""+res_sql[0][j]+"\" type=\"checkbox\">";
               else{
-                if (string_sql.equals("f")) 
+                if (string_sql.equals("f"))
                   string_html = "<input name=\""+res_sql[0][j]+"\" type=\"checkbox\">";
                 else
                   string_html = "<input name=\""+res_sql[0][j]+"\" type=\"checkbox\" checked>";
@@ -72,9 +72,9 @@
     }
 
     public void entity_table(String[][] res_sql, JspWriter myout, String table_name)
-    {  
-      try{ 
-        String[][] res = data_htmlcomponent(res_sql); 
+    {
+      try{
+        String[][] res = data_htmlcomponent(res_sql);
         // res =res_sql;
 
         String html = "";
@@ -90,7 +90,7 @@
         html += "<th> action </th>\n";
         html += "\n</tr>\n";
 
-        
+
         // data view
         for(int i=2;i<res.length;i++){
           html += "<tr> \n"; // can't use form inside table
@@ -113,7 +113,7 @@
 
         // write
         myout.println(html);
-      } 
+      }
       catch(Exception eek) { }
     }
     */
@@ -134,13 +134,17 @@
             jsArray += ",";
           }
         }
-        jsArray += "]; </script>";
+        jsArray += "]; ";
+
+        // automatically show it
+        jsArray += "data_entity("+table_name+",\""+table_name+"\");";
+        jsArray += "</script>";
         return jsArray;
     }
 
     public void item_menu_post(String[] item, JspWriter myout){
-      // this is by post  
-      try{ 
+      // this is by post
+      try{
 
         //<form action = "FTMweb.jsp" method = "POST">
          //<input class="menu_item" type = "submit" value = "Student" />
@@ -153,13 +157,13 @@
         }
         // write
         myout.println(html);
-      } 
+      }
       catch(Exception eek) { }
     }
 
     public void item_menu_get(String[] table_name, String[] item, JspWriter myout){
-      // this is by get  
-      try{ 
+      // this is by get
+      try{
 
         //<form action = "FTMweb.jsp" method = "POST">
          //<input class="menu_item" type = "submit" value = "Student" />
@@ -170,7 +174,7 @@
         }
         // write
         myout.println(html);
-      } 
+      }
       catch(Exception eek) { }
     }
 
@@ -180,13 +184,13 @@
       }
   %>
 
-  <% 
+  <%
     // for initialization
     // why this can be written in funciton ??
     Connection conn=null;
     try{
         DriverManager.registerDriver(new org.postgresql.Driver());
-        conn = DriverManager.getConnection("jdbc:postgresql://localhost/postgres?user=postgres&password=12345");
+        conn = DriverManager.getConnection("jdbc:postgresql://localhost/tritonlink?user=postgres&password=123456");
         //System.out.println("connected");
 
         // connection.close(); // move to the end
@@ -204,7 +208,7 @@
     <div class="menu">
     <%@ page import="java.util.*" %>
       <%
-        
+
         String[] item_name = new String[]{"student","faculty","course","classes","enrollment","class taken", "thesis", "probation", "review", "degree requirements", "research"};
         String[] table_name = item_name;
         item_menu_get(table_name,item_name,out);
@@ -213,9 +217,9 @@
 
     <!-- Create the main content area -->
     <div class="content" id="mainContent">
-      <p>Click on a menu item to see the content. 
+      <p>Click on a menu item to see the content.
       </p>
-      <%@ page language="java" import="java.util.HashMap" %> 
+      <%@ page language="java" import="java.util.HashMap" %>
       <%
       // not import java.util.HashMap
         //HashMap<String, String[]> page_tables=new HashMap<String, String[]>(){{
@@ -268,7 +272,7 @@
           if (request.getParameterMap().containsKey("type")&&request.getParameter("type").equals("general")){
             String tablename=request.getParameter("table_name");
             String[] related_tablename = page_tables.get(tablename);
-            for(int i=0;i<related_tablename.length;i++){// 
+            for(int i=0;i<related_tablename.length;i++){//
               String[][] res=FTM.tablename_schema_data(conn.createStatement(), related_tablename[i]);
               // entity_table(res,out,request.getParameter("table_name"));
               // maybe just render the data in the front end is easier to mange ???
@@ -289,9 +293,9 @@
         // out.println(e.printStackTrace());
         e.printStackTrace();
     }
-    
+
   %>
-        
+
   </body>
 
 
