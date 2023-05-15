@@ -134,7 +134,11 @@
             jsArray += ",";
           }
         }
-        jsArray += "]; </script>";
+        jsArray += "]; ";
+
+        // automatically show it
+        jsArray += "data_entity("+table_name+",\""+table_name+"\");";
+        jsArray += "</script>";
         return jsArray;
     }
 
