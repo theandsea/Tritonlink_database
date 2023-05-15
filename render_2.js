@@ -37,16 +37,16 @@ function data_entity(data, table_name){
   table = document.createElement("table");
       
   // Loop over the data array to add rows and cells to the table
-  for (var i = 0; i < data.length; i++) {
+  for (i = 0; i < data.length; i++) {
     //if (i==1) // maybe i==1 just as new value......
     // ---> insert as an independent function...since still use it 
     //  continue;
     // i==1 still need, at least 1 row.
-    var row = table.insertRow();
-    for (var j = 0; j < data[i].length; j++) {
-      var cell = row.insertCell();
+     row = table.insertRow();
+    for ( j = 0; j < data[i].length; j++) {
+       cell = row.insertCell();
       //cell.innerHTML = data[i][j];
-      var box;
+      let box;
       if (i==0){ // all just label
         cell.innerHTML = data[i][j];
       }
@@ -98,18 +98,18 @@ function data_entity(data, table_name){
   // Add the table to the page
   mainContent = document.getElementById("mainContent");
   /*
-  var h1 = document.createElement("h1");
+   h1 = document.createElement("h1");
   h1.innerText = table_name;
-  */
   mainContent.appendChild(h1); 
+  */
   mainContent.appendChild(table); 
   return table;
 }
 
 function entity_insertrow(table){
   //table.insertBefore
-  var row = table.insertRow(1);
-  var row_pre = table.rows[2];
+   row = table.insertRow(1);
+   row_pre = table.rows[2];
   row.outerHTML = row_pre.outerHTML; // already not include the value ???? 
   // change button
   button = document.createElement('button');
@@ -142,14 +142,14 @@ function row_json(row){
   // row information
   cells = row.cells;
   for (i=0;i<cells.length-1;i++){
-    box = cells[i].childNodes;
+    box = cells[i].childNodes[0];
     data_type = box.getAttribute("data_type");
     data_name = box.getAttribute("data_name");
     value = null;
     if(data_type==="varchar"){
-
+      value = box.value;
     } else if (data_type==="int4"){
-
+      value = box.value;
     } else {
       alert ("unhandled data type to convert into sql "+data_type);
     }
@@ -160,13 +160,56 @@ function row_json(row){
   return json;
 }
 
+function restapi(json){
+  xhr = new XMLHttpRequest();
+  url = "FTMweb_action.jsp";
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        console.log(xhr.responseText);
+          json_response = JSON.parse(xhr.responseText);
+          console.log(json_response);
+          if(json_response["ifsuccess"]==="true"){
+            alert(json["type"]+" succeed in "+json["table_name"]);
+          } else if (json_response["ifsuccess"]==="false"){
+            alert("data error");
+          } else {
+            alert("unexpected ifsuccess = "+json_response["ifsuccess"]);
+          }
+      } else if (xhr.status == 500){
+        alert("jsp error in server side"); 
+      } else if (xhr.status == 200){
+        // nothing 
+      } else{
+        alert("unhandled status " + xhr.status);
+      }
+  }
+
+  params = "";
+  keys = Object.keys(json);
+  for(i=0;i<keys.length-1;i++)
+    params += keys[i]+"="+json[keys[i]]+"&";
+    params += keys[i]+"="+json[keys[i]];
+  console.log("send\n"+params);
+  xhr.send(params);
+
+
+}
+
 function insert(button){
   json = row_json(button.parentNode.parentNode);
+  if (json == null){
+    alert("data invalid");
+    return;
+  }
+    
 
   // server side...send to insert into the database
+  json["type"] = "insert";
+  restapi(json);
 
   // client side...add new row
-  table = button.parentNode.parentNode.parentElement;
   entity_insertrow(table);
 }
 
