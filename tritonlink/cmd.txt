@@ -1,0 +1,20 @@
+ 
+import java.sql.Driver; // if package not exist..it will show when javac compile it
+import Driver; // if exist in .jar...it is fine...oterwise just check jar file
+
+public class FTM {
+    public static void main(String[] args) {
+        try{
+            Class.forName("com.mysql.jdbc.Driver"); // this is in mysql ... otherwise, "No suitable driver found for jdbc:tritonlink:"
+            String connURL = "jdbc:tritonlink:";//args[0]; //jdbc:postgresql://localhost/sample
+            String username = "postgres";// args[1]; //postgres
+            String password = "123456";//args[2]; //12345
+            connectAndTest(connURL, username, password);
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+
+

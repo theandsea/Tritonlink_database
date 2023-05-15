@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Menu Example</title>
+	<style>
+		/* Style the menu */
+		.menu {
+			float: left;
+			width: 20%;
+			background-color: #f1f1f1;
+			padding: 10px;
+		}
+
+		/* Style the links inside the menu */
+		.menu a {
+			display: block;
+			color: black;
+			padding: 10px;
+			text-decoration: none;
+		}
+
+		/* Add a hover effect to the menu links */
+		.menu a:hover {
+			background-color: #ddd;
+		}
+
+		/* Style the main content area */
+        .content {
+			flex-basis: 80%;
+			background-color: #fff;
+			padding: 20px;
+			box-sizing: border-box;
+		}
+	</style>
+</head>
+<body>
+
+    <div class="container">
+		<div class="menu">
+            <a href="#" onclick="showContent('Student')">Student</a>
+            <a href="#" onclick="showContent('Faculty')">Faculty</a>
+            <a href="#" onclick="showContent('Course')">Course</a>
+            <a href="#" onclick="showContent('Class')">Class</a>
+            <a href="#" onclick="showContent('Enrollement')">Enrollement</a>
+            <a href="#" onclick="showContent('Classes Taken')">Classes Taken</a>
+            <a href="#" onclick="showContent('Thesis')">Thesis</a>
+            <a href="#" onclick="showContent('Probation')">Probation</a>
+
+            <a href="#" onclick="showContent('Review')">Review</a>
+            <a href="#" onclick="showContent('Degree Requirements')">Degree Requirements</a>
+            <!--<a href="#" onclick="showContent('content4')">Menu Item 4</a> // for add more-->
+        </div>
+		<!-- Create the main content area -->
+	    <div class="content" id="mainContent">
+		    <p>Click on a menu item to see the content.</p>
+	    </div>
+	</div>
+	<!-- Create the menu -->
+
+	
+
+	<!-- Add the JavaScript to update the content -->
+	<script>
+		function showContent(contentId) {
+			// Get the content element
+			var content = document.getElementById(contentId);
+
+			// Get the main content area
+			var mainContent = document.getElementById('mainContent');
+
+			// Replace the main content with the selected content
+			mainContent.innerHTML = content.innerHTML;
+		}
+	</script>
+
+	<!-- Define the different content areas -->
+
+	<div id="Student" style="display:none;">
+		<h1>Student Entry Form</h1>
+<form>
+    <!-- student ID -->
+    <label for="student-id">Student ID:</label>
+    <input type="text" id="student-id" name="student-id"><br>
+    <!-- SSN -->
+    <label for="ssn">SSN:</label>
+    <input type="text" id="ssn" name="ssn"><br>
+    <!-- First Name -->
+    <label for="first">First Name:</label>
+    <input type="text" id="first" name="first"><br>
+    <!-- Last Name -->
+    <label for="last">Last Name:</label>
+    <input type="text" id="last" name="last"><br>
+    <!-- Middle Name -->
+    <label for="middle">Middle Name:</label>
+    <input type="text" id="middle" name="middle"><br>
+    <!-- Enrolled in the school -->
+    <label for="enrolled">Enrolled:</label>
+    <input type="checkbox" id="enrolled" name="enrolled"><br>
+    <input type="submit" value="Submit">
+  </form>
+	</div>
+	<div id="Faculty" style="display:none;">
+		<h1>Faculty Entry Form</h1>
+  <form>
+    <!-- Fac-Name -->
+    <label for="faculty-name">Name:</label>
+    <input type="text" id="faculty-name" name="faculty-name"><br>
+    <!-- Fac-Department -->
+    <label for="faculty-department">Department:</label>
+    <input type="text" id="faculty-department" name="faculty-department"><br>
+    <!-- Fac-Title -->
+    <label for="faculty-title">Title:</label>
+    <input type="text" id="faculty-title" name="faculty-title"><br>
+  
+    <input type="submit" value="Submit">
+	</div>
+	<div id="Course" style="display:none;">
+		<h1>Course Entry Form</h1>
+    <!-- course number -->
+    <label for="course-number">Course number:</label>
+    <input type="text" id="course-number" name="course-number"><br>
+
+    <!-- course department -->
+    <label for="course-department">Course Department:</label>
+    <input type="text" id="course-department" name="course-department"><br>
+    <!-- Units -->
+    <label for="course-min-units">Min Units:</label>
+    <input type="text" id="course-min-units" name="course-min-units"><br>
+
+    <label for="course-max-units">Max Units:</label>
+    <input type="text" id="course-max-units" name="course-max-units"><br>
+
+    <!-- Grade option -->
+    <label for="grade-options">Select grade options:</label>
+		<select name="grade-options" id="grade-options">
+			<option value="0">--Select grade options--</option>
+			<option value="1">Letter</option>
+            <option value="2">S/U</option>
+			<option value="3">Letter or S/U</option>
+		</select><br>
+    <!-- lab  -->
+    <label for="lab">lab Required:</label>
+    <input type="checkbox" id="lab" name="lab"><br>
+
+    <!-- course consent -->
+    <label for="consent">Professor Name:</label>
+    <input type="text" id="consent" name="consent"><br>
+    <!-- course pre req -->
+    <label for="pre-req">Pre-requirement Course number</label>
+    <input type="text" id="pre-req" name="pre-req"><br>
+
+    <input type="submit" value="Submit">
+  </form>
+	</div>
+	<div id="Class" style="display:none;">
+		<h1>Class Entry Form</h1>
+  <form>
+    <!-- course number -->
+    <label for="course-number">Course number:</label>
+    <input type="text" id="course-number" name="course-number"><br>
+    <!-- title -->
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title"><br>
+
+    <!-- section id -->
+    <label for="section-id">Section id:</label>
+    <input type="text" id="section-id" name="section-id"><br>
+
+    <!-- Section quarter -->
+    <label for="Section-qaurter">Select Quarter:</label>
+    <select name="Section-qaurter" id="Section-qaurter">
+        <option value="0">--Select grade options--</option>
+        <option value="1">Fall</option>
+        <option value="2">Winter</option>
+        <option value="3">Spring</option>
+        <option value="4">Summer I</option>
+        <option value="5">Summer II</option>
+    </select><br>
+
+    <!-- section year -->
+    <label for="section-year">Year:</label>
+    <input type="number" id="section-year" name="section-year"><br>
+    <!-- enrollment limit -->
+    <label for="section-limit">Enrollement Limit:</label>
+    <input type="number" id="section-limit" name="section-limit"><br>
+
+    <!-- discussion -->
+    <label for="discussion">Discussion Mandatory?</label>
+    <input type="checkbox" id="discussion" name="discussion"><br>
+
+    <input type="submit" value="Submit">
+	</div>
+
+    <div id="Enrollement" style="display:none;">
+		<h1>Course Enrollement Current Quarter</h1>
+  <form>
+    <!-- student ID -->
+    <label for="student-id">Student ID:</label>
+    <input type="text" id="student-id" name="student-id"><br>
+
+    <!-- course number -->
+    <label for="course-number">Course number:</label>
+    <input type="text" id="course-number" name="course-number"><br>
+
+    <!-- section id -->
+    <label for="section-id">Section id:</label>
+    <input type="text" id="section-id" name="section-id"><br>
+
+    <!-- Units -->
+    <label for="course-units"> Units:</label>
+    <input type="text" id="course-units" name="course-units"><br>
+
+    <input type="submit" value="Submit">
+  </form>
+	</div>
+	<div id="Classes Taken" style="display:none;">
+		<h1>Classes Taken in the Past</h1>
+  <form>
+    <!-- student ID -->
+    <label for="student-id">Student ID:</label>
+    <input type="text" id="student-id" name="student-id"><br>
+
+    <!-- course number -->
+    <label for="course-number">Course number:</label>
+    <input type="text" id="course-number" name="course-number"><br>
+
+    <!-- section id -->
+    <label for="section-id">Section id:</label>
+    <input type="text" id="section-id" name="section-id"><br>
+
+    <!-- Units -->
+    <label for="course-units"> Units:</label>
+    <input type="text" id="course-units" name="course-units"><br>
+
+    <!-- Grade -->
+    <label for="course-grade"> Grade Recieved:</label>
+    <input type="text" id="course-grade" name="course-grade"><br>
+
+    <input type="submit" value="Submit">
+  </form>
+	</div>
+	<div id="Thesis" style="display:none;">
+		<h1>Thesis Committee Submission</h1>
+  <form>
+    <!-- student ID -->
+    <label for="student-id">Student ID:</label>
+    <input type="text" id="student-id" name="student-id"><br>
+
+    <!-- Fac-Name -->
+    <label for="faculty-name">Faculty Name:</label>
+    <input type="text" id="faculty-name" name="faculty-name"><br>
+
+    <!-- Thesis name -->
+    <label for="thesis">Thesis name:</label>
+    <input type="text" id="thesis" name="thesis"><br>
+
+    <input type="submit" value="Submit">
+  </form>
+	</div>
+	<div id="Probation" style="display:none;">
+		<h1>Probation Info Submission</h1>
+  <form>
+    <!-- student ID -->
+    <label for="student-id">Student ID:</label>
+    <input type="text" id="student-id" name="student-id"><br>
+
+    <!-- start  -->
+    <label for="start_t">Start term:</label>
+    <input type="text" id="start_t" name="start_t"><br>
+
+    <!-- end  -->
+    <label for="end_t">End term:</label>
+    <input type="text" id="end_t" name="end_t"><br>
+
+    <input type="submit" value="Submit">
+  </form>
+	</div>
+
+    <div id="Review" style="display:none;">
+		<h1>Review session</h1>
+  <form>
+    <!-- section id -->
+    <label for="section-id">Section id:</label>
+    <input type="text" id="section-id" name="section-id"><br>
+
+    <!-- date -->
+    <label for="date"> Date:</label>
+    <input type="date" id="date" name="date"><br>
+
+     <!-- start  -->
+     <label for="start_time">Start time:</label>
+     <input type="time" id="start_t" name="start_t"><br>
+ 
+     <!-- end  -->
+     <label for="end_time">End time:</label>
+     <input type="time" id="end_time" name="end_time"><br>
+
+    <input type="submit" value="Submit">
+  </form>
+	</div>
+	<div id="Degree Requirements" style="display:none;">
+		<h1>Degree Requirements' Info submition</h1>
+  <form>
+    <!-- degree -->
+    <label for="degree">Select Quarter:</label>
+    <select name="degree" id="degree">
+        <option value="0">--Select Degree--</option>
+        <option value="1">BS</option>
+        <option value="2">MS</option>
+        <option value="3"> MS/BS</option>
+        <option value="4">PhD</option>
+    </select><br>
+
+    <!-- Department -->
+    <label for="department">Department:</label>
+    <input type="text" id="department" name="department"><br>
+
+    <!-- Major -->
+    <label for="major">Major:</label>
+    <input type="text" id="major" name="major"><br>
+
+    <!-- total min units -->
+    <label for="min-units">Total minimum units:</label>
+    <input type="number" id="min-units" name="min-units"><br>
+
+    <!-- category -->
+    <label for="category">Category:</label>
+    <input type="text" id="category" name="category"><br>
+
+    <!-- Min average grade for category -->
+    <label for="average_grade">Average Grade:</label>
+    <input type="text" id="average_grade" name="average_grade"><br>
+
+    <!-- concentration -->
+    <label for="concentration">Concentration:</label>
+    <input type="text" id="concentration" name="concentration"><br>
+
+    <!-- course -->
+    <label for="course">Course:</label>
+    <input type="text" id="course" name="course"><br>
+
+    <input type="submit" value="Submit">
+  </form>
+	</div>
+	<div id="content3" style="display:none;">
+		<p>This is the content for menu item 3.</p>
+	</div>
+	<div id="content4" style="display:none;">
+		<p>This is the content for menu item 4.</p>
+	</div>
+
+</body>
+</html>
