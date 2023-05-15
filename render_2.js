@@ -97,8 +97,10 @@ function data_entity(data, table_name){
   
   // Add the table to the page
   mainContent = document.getElementById("mainContent");
+  /*
   var h1 = document.createElement("h1");
   h1.innerText = table_name;
+  */
   mainContent.appendChild(h1); 
   mainContent.appendChild(table); 
   return table;
@@ -132,13 +134,12 @@ function entity_insertrow(table){
 }
 
 
-function row_json(button){
+function row_json(row){
   json ={};
-  table = button.parentNode.parentNode.parentNode.parentNode;
+  table = row.parentNode.parentNode;
   json["table_name"]=table.getAttribute("table_name");
 
   // row information
-  row = button.parentNode.parentNode;
   cells = row.cells;
   for (i=0;i<cells.length-1;i++){
     box = cells[i].childNodes;
@@ -160,7 +161,7 @@ function row_json(button){
 }
 
 function insert(button){
-  
+  json = row_json(button.parentNode.parentNode);
 
   // server side...send to insert into the database
 
