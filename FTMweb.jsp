@@ -166,7 +166,7 @@
       //</form>
         String html = "";
         for(int i=0;i<item.length;i++){
-          html += "<a href=\"?type=general&"+"table_name="+table_name[i] +"\" >"+item[i]+"</a>\n";
+          html += "<a href=\"?type=general&"+"table_name="+table_name[i] +"\"" + ">"+item[i]+"</a>\n";
         }
         // write
         myout.println(html);
@@ -205,7 +205,7 @@
     <%@ page import="java.util.*" %>
       <%
         
-        String[] item_name = new String[]{"student","faculty","course","class","enrollment","class taken", "thesis", "probation", "review", "degree requirements", "Research"};
+        String[] item_name = new String[]{"student","faculty","course","classes","enrollment","class taken", "thesis", "probation", "review", "degree requirements", "research"};
         String[] table_name = item_name;
         item_menu_get(table_name,item_name,out);
       %>
@@ -215,7 +215,6 @@
     <div class="content" id="mainContent">
       <p>Click on a menu item to see the content. 
       </p>
-      
       <%@ page language="java" import="java.util.HashMap" %> 
       <%
       // not import java.util.HashMap
@@ -235,8 +234,8 @@
         String[] course = new String[]{"course","prerequirement","cat_belong","con_belong",};
         page_tables.put("course", course);
         //class tables
-        String[] classes = new String[]{"class","section", "weekly_meeting"};
-        page_tables.put("class",classes);
+        String[] classes = new String[]{"classes","section", "weekly_meeting"};
+        page_tables.put("classes",classes);
         //enrolment tables
         String[] enrollment = new String[]{"enrollment","waitlist"};
         page_tables.put("enrollment",enrollment);

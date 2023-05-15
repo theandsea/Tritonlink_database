@@ -157,7 +157,7 @@
 " FOREIGN KEY (c_number) REFERENCES course(c_number),"+
 " FOREIGN KEY (section_id,s_year) REFERENCES section(section_id,s_year)"+
 ");"+
-"CREATE TABLE class("+
+"CREATE TABLE classes("+
 "c_number VARCHAR(50),"+
 " section_id INT,"+
 " quarter VARCHAR(50),"+
@@ -258,7 +258,7 @@
             }
 
             // not exists
-            String[] table_names = {"student", "times", "degree", "faculty", "meeting_Times", "course", "section", "research", "thesis", "category", "concentration", "uCSD_Degree", "undergraduates", "graduates", "attendance", "probation", "previous_D", "weekly_Meeting", "review", "enrollment", "equivalent_num", "waitlist", "class", "work_on_Research", "research_lead", "thesis_Committee", "advisory", "prerequirement" ,"cat_belong", "con_belong", "con_Requirement", "cat_Requirement"};
+            String[] table_names = {"student", "times", "degree", "faculty", "meeting_Times", "course", "section", "research", "thesis", "category", "concentration", "uCSD_Degree", "undergraduates", "graduates", "attendance", "probation", "previous_D", "weekly_Meeting", "review", "enrollment", "equivalent_num", "waitlist", "classes", "work_on_Research", "research_lead", "thesis_Committee", "advisory", "prerequirement" ,"cat_belong", "con_belong", "con_Requirement", "cat_Requirement"};
             xx += "<br>"+ String.valueOf(table_names.length)+"__"+String.valueOf(table_res.length);
             for(int j=0;j<table_names.length;j++){
                 Boolean exist=false;
